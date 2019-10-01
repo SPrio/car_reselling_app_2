@@ -1,14 +1,28 @@
-<%= form_for(@user) do |f| %>
+<%= form_for(@user, class: "form-group") do |f| %>
   <%= render 'shared/error_messages', object: @user %>
 
   <%= f.label :name %>
-  <%= f.text_field :name, class: 'form-control' %>
+  <%= f.text_field :name, class: 'form-control', required: true %>
 
   <%= f.label :email %>
-  <%= f.email_field :email, class: 'form-control' %>
+  <%= f.email_field :email, class: 'form-control', required: true %>
 
   <%= f.label :number, 'Phone Number' %>
-  <%= f.telephone_field :number, class: 'form-control' %>
+  <%= f.telephone_field :number, class: 'form-control', required: true %>
+
+  <%= f.label :category %>
+  <table class="table table-sm" >
+    <tr class="table-active">
+      <td class="form-check">
+        <%= f.radio_button :category, "Buyer", class: "form-check-input ml-0", required: true %>
+        <%= f.label :category, "Buyer", class: "form-check-label" %>
+      </td>
+      <td class="form-check">
+        <%= f.radio_button :category, "Seller", class: "form-check-input ml-0", required: true %>
+        <%= f.label :category, "Seller", class: "form-check-label" %>
+      </td>
+    </tr>
+  </table>
 
   <%= f.label :password %>
   <%= f.password_field :password, class: 'form-control' %>

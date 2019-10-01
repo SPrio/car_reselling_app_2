@@ -10,8 +10,10 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
-  validates_length_of :number, minimum: 10, maximum: 10
-  
+  VALID_PHONE_REGEX = /\A^(?:(?:\+|0{0,2})91(\s*[\ -]\s*)?|[0]?)?[789]\d{9}|(\d[ -]?){10}\d$\z/i
+  validates :number, presence: true, length: { minimum: 10, maximum: 10 }, format: { with: VALID_PHONE_REGEX }
+
+  validates :category, inclusion: { in: ["Buyer","Seller","Admin"] }, presence: true
   
 
   class << self
