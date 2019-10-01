@@ -10,6 +10,10 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
+  validates_length_of :number, minimum: 10, maximum: 10
+  
+  
+
   class << self
     # Returns the hash digest of the given string.
     def digest(string)
