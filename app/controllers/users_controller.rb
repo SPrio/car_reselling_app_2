@@ -6,7 +6,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   def new
-    @user = User.new
+    if logged_in?
+      flash[:warning] = "You are already Logged In, Please log out and then sign up"
+      redirect_to root_path
+    else
+      @user = User.new
+    end
   end
   def create
     @user = User.new(user_params)
