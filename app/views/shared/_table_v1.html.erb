@@ -6,7 +6,7 @@
 <% end %>
 </div>
 </div>
-<% unless var_object.nil? %>
+<% unless var_object == [] %>
   <h1>List of <%= var_name.capitalize %></h1>
   <table class="table table-bordered">
     <thead class="thead-light text-center">
@@ -16,7 +16,7 @@
         <% if var_name == "models" %>
           <th scope="col">Brand Name</th>
         <% end %>
-        <th scope="col" colspan="2">options</th>
+        <th scope="col" colspan="2">Options</th>
       </tr>
     </thead>
     <tbody class="text-center">  

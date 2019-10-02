@@ -20,3 +20,12 @@ Brand.create(name: "Honda")
 Brand.create(name: "Mahindra")
 Brand.create(name: "Maruti Suzuki") 
 Brand.create(name: "Tata")
+
+Model.create( name: "Alto", brand_id: 6)
+Model.create( name: "R8", brand_id: 3)
+Model.create( name: "City", brand_id: 4)
+Model.create( name: "Etron", brand_id: 1)
+Model.create( name: "Indigo", brand_id: 7)
+Model.create( name: "Swift", brand_id: 6)
+
+Variant.create()
