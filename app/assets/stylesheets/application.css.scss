@@ -14,7 +14,7 @@
  *= require_self
  */
 @import "bootstrap";
-
+@import 'font-awesome';
 /* universal */
 
 body {
@@ -126,3 +126,28 @@ input {
   text-align: center;
 }
 
+.float{
+	position:fixed;
+	bottom:60px;
+	right:70px;
+	background-color:#0C9;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 4px 4px 6px #999;
+}
+.float a{
+  text-decoration: none;
+}
+.my-float{
+  padding: 10px 10px;
+  font-size: 20px;
+}
+.my-float span{
+  font-size: 20px;
+}
+.float:hover{
+  color: black;
+  background-color: yellow;
+  box-shadow: 8px 8px 12px #999;
+}

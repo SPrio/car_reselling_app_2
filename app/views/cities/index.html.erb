@@ -9,19 +9,22 @@
       </tr>
     </thead>
     <tbody class="text-center">  
-      <% @cities.each do |c| %>
+      <% @cities.each do |city| %>
         <tr>
-          <td><%= c.id %></td>
-          <td><%= c.name %></td>
-          <td><%= link_to 'Edit', '', class: "btn btn-info" %></td>
-          <td><%= link_to 'Delete', '', class: "btn btn-danger" %></td>
+          <td><%= city.id %></td>
+          <td><%= city.name %></td>
+          <td><%= link_to 'Edit', edit_city_path(city), class: "btn btn-primary" %></td>
+          <td><%= link_to "Destroy", city_path(city), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% else %>
-  <div class= "jumbotron">
+  <div class= "jumbotron text-center">
     <h1>No City is cuurently added to your DB,</h1>
     <p>Go to Add new and new city names, then it will show up in the list</p>
   </div>
+<% end %>
+<%= link_to new_city_path, class: 'float btn' do %>
+  <div class="my-float"><%= fa_icon "plus" %>&nbsp;<span>Add New City</span></div>
 <% end %>

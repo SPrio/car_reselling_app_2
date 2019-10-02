@@ -1,8 +1,0 @@
-<%= form_for(@city, class: "form-group") do |f| %>
-  <%= render 'shared/error_messages', object: @user %>
-
-  <%= f.label :name %>
-  <%= f.text_field :name, class: 'form-control', required: true %>
-
-  <%= f.submit 'Add City', class: "btn btn-primary" %>
-<% end %>
