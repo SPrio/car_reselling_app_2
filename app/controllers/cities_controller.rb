@@ -2,6 +2,7 @@ class CitiesController < ApplicationController
   include ApplicationHelper
   include AdminHelper
   before_action :except_admin?
+  before_action :get_city, only: [:edit, :update, :destroy]
 
   def index
     @cities = City.all
@@ -23,11 +24,9 @@ class CitiesController < ApplicationController
   end
 
   def edit
-    @city = City.find(params[:id])
   end
 
   def update
-    @city = City.find(params[:id])
     if @city.update(model_params(:city))
       flash[:success] = "City has been succesfully Updated"
       redirect_to cities_path
@@ -37,9 +36,13 @@ class CitiesController < ApplicationController
     end
   end
 
-  def destroy_city
+  def destroy
     @city.destroy
     flash[:success] = "City has been succesfully deleted"
     redirect_to cities_path
+  end
+
+  def get_city
+    @city = City.find(params[:id])
   end
 end

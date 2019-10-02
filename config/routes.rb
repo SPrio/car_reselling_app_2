@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'brands/index'
+  get 'brands/new'
+  get 'brands/edit'
   get 'sessions/new'
   root to: 'home#index'
   get 'users/new'
@@ -9,11 +12,9 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   resources :users
-  get '/admin/dashboard', to: 'admin#dashboard'
-  #get '/admin/city', to: 'admin#city_index'
-  #get '/admin/city/add', to: 'admin#add_city'
-  #post '/admin/city/save', to: 'admin#save_city'
-  resources :cities
   resources :account_activations, only: [:edit]
+  get '/admin/dashboard', to: 'admin#dashboard'
+  resources :cities
+  resources :brands
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

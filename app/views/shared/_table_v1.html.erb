@@ -1,0 +1,30 @@
+<% unless var_object.nil? %>
+  <h1>List of <%= var_name.capitalize %></h1>
+  <table class="table table-bordered">
+    <thead class="thead-light text-center">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col" colspan="2">options</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">  
+      <% var_object.each do |each_one| %>
+        <tr>
+          <td><%= each_one.id %></td>
+          <td><%= each_one.name %></td>
+          <td><%= link_to 'Edit', '/'+var_name+'/'+each_one.id.to_s+'/edit', class: "btn btn-primary" %></td>
+          <td><%= link_to "Destroy", '/'+var_name+'/'+each_one.id.to_s, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class= "jumbotron text-center">
+    <h1>No <%= var_name.capitalize %> is currently added to your DB,</h1>
+    <p>Go to Add new and where u can add new <%= var_name %> names, then it will show up in the list</p>
+  </div>
+<% end %>
+<%= link_to '/'+var_name+'/new', class: 'float btn' do %>
+  <div class="my-float"><%= fa_icon "plus" %>&nbsp;<span>Add New <%= var_name.capitalize %></span></div>
+<% end %>
