@@ -4,22 +4,27 @@
       <a class="navbar-brand" href="/home/index">Car Reselling Corp.</a> 
       <ul class="nav navbar-nav ml-auto">         
         <% if logged_in? %>
-          <li class="nav-item dropdown show">
-            <a href="#" class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              My Account
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to "My appointment", edit_user_path(current_user), class: "dropdown-item" %>
-              <%= link_to "Branches", edit_user_path(current_user), class: "dropdown-item" %>
-              <%= link_to "My Profile", edit_user_path(current_user), class: "dropdown-item" %>
-              <%= link_to "Status", edit_user_path(current_user), class: "dropdown-item" %>
-              <!--<%= link_to "Profile", current_user, class: "dropdown-item" %>-->
-              <div class="dropdown-divider"></div>
-              <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item" %>
-            </div>
-          </li>
+          <% if current_user.admin  %>
+            <li class="nav-item"><%= link_to 'Admin Dashboard', admin_dashboard_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to "Log out", logout_path, method: :delete, class: "nav-link" %></li>
+          <% else %>
+            <li class="nav-item dropdown show">
+              <a href="#" class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                My Account
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <%= link_to "My appointment", edit_user_path(current_user), class: "dropdown-item" %>
+                <%= link_to "Branches", edit_user_path(current_user), class: "dropdown-item" %>
+                <%= link_to "My Profile", edit_user_path(current_user), class: "dropdown-item" %>
+                <%= link_to "Status", edit_user_path(current_user), class: "dropdown-item" %>
+                <!--<%= link_to "Profile", current_user, class: "dropdown-item" %>-->
+                <div class="dropdown-divider"></div>
+                <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item" %>
+              </div>
+            </li>
+          <% end %>
         <% else %>
-          <li><%= link_to "Log in", login_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to "Log in", login_path, class: 'nav-link' %></li>
         <% end %>  
       </ul>
     </div>

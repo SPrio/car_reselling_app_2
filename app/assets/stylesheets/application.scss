@@ -19,6 +19,8 @@
 
 body {
   padding-top: 80px;
+  /*background-image: image-url('cars_background.jpg');*/
+  
 }
 
 section {
@@ -119,3 +121,8 @@ input {
     color: black;
   }
 }
+
+.admin-table td{
+  text-align: center;
+}
+
