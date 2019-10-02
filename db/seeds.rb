@@ -35,3 +35,9 @@ State.create(name: "WB")
 State.create(name: "BR")
 State.create(name: "MH")
 State.create(name: "DL")
+
+KilometerRange.create(name: 'Upto 10000 km')
+KilometerRange.create(name: '10000-20000 km')
+KilometerRange.create(name: '20000-40000 km')
+KilometerRange.create(name: '40000-60000 km')
+

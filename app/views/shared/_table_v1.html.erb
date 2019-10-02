@@ -2,12 +2,12 @@
 <div class="col-sm-9"></div>
 <div class="col-sm-2">
 <%= link_to '/'+var_name+'/new', class: 'float btn' do %>
-  <div class="my-float"><%= fa_icon "plus" %>&nbsp;<span>Add New <%= var_name.capitalize %></span></div>
+  <div class="my-float"><%= fa_icon "plus" %>&nbsp;<span>Add New <%= var_name.humanize.capitalize %></span></div>
 <% end %>
 </div>
 </div>
 <% unless var_object == [] %>
-  <h1>List of <%= var_name.capitalize %></h1>
+  <h1>List of <%= var_name.humanize.capitalize %></h1>
   <table class="table table-bordered">
     <thead class="thead-light text-center">
       <tr>
@@ -35,7 +35,7 @@
   </table>
 <% else %>
   <div class= "jumbotron text-center">
-    <h1>No <%= var_name.capitalize %> is currently added to your DB,</h1>
+    <h1>No <%= var_name.humanize.capitalize %> is currently added to your DB,</h1>
     <p>Go to Add new and where u can add new <%= var_name %> names, then it will show up in the list</p>
   </div>
 <% end %>
