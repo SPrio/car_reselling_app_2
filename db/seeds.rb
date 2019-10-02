@@ -28,4 +28,10 @@ Model.create( name: "Etron", brand_id: 1)
 Model.create( name: "Indigo", brand_id: 7)
 Model.create( name: "Swift", brand_id: 6)
 
-Variant.create()
+Variant.create(name: "Petrol")
+Variant.create(name: "Diesel")
+
+State.create(name: "WB")
+State.create(name: "BR")
+State.create(name: "MH")
+State.create(name: "DL")
