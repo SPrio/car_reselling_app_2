@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-4 offset-md-4">
+    <%= form_for(@model, class: "form-group input-group") do |f| %>
+      <%= render partial: "shared/error_messages", locals: {var: @model} %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control', required: true %>
+
+      <%= f.label 'Brand' %>
+      <%= f.collection_select :brand_id, Brand.all, :id, :name, include_blank: "Please Select a Brand", required: true %>
+
+      <%= f.submit var_msg , class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>

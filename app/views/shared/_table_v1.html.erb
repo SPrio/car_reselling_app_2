@@ -1,3 +1,11 @@
+<div class="row">
+<div class="col-sm-9"></div>
+<div class="col-sm-2">
+<%= link_to '/'+var_name+'/new', class: 'float btn' do %>
+  <div class="my-float"><%= fa_icon "plus" %>&nbsp;<span>Add New <%= var_name.capitalize %></span></div>
+<% end %>
+</div>
+</div>
 <% unless var_object.nil? %>
   <h1>List of <%= var_name.capitalize %></h1>
   <table class="table table-bordered">
@@ -5,6 +13,9 @@
       <tr>
         <th scope="col">ID</th>
         <th scope="col">Name</th>
+        <% if var_name == "models" %>
+          <th scope="col">Brand Name</th>
+        <% end %>
         <th scope="col" colspan="2">options</th>
       </tr>
     </thead>
@@ -13,6 +24,9 @@
         <tr>
           <td><%= each_one.id %></td>
           <td><%= each_one.name %></td>
+          <% if var_name == "models" %>
+            <td><%= Brand.find(each_one.brand_id).name %></td>
+          <% end %>
           <td><%= link_to 'Edit', '/'+var_name+'/'+each_one.id.to_s+'/edit', class: "btn btn-primary" %></td>
           <td><%= link_to "Destroy", '/'+var_name+'/'+each_one.id.to_s, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %></td>
         </tr>
@@ -24,7 +38,4 @@
     <h1>No <%= var_name.capitalize %> is currently added to your DB,</h1>
     <p>Go to Add new and where u can add new <%= var_name %> names, then it will show up in the list</p>
   </div>
-<% end %>
-<%= link_to '/'+var_name+'/new', class: 'float btn' do %>
-  <div class="my-float"><%= fa_icon "plus" %>&nbsp;<span>Add New <%= var_name.capitalize %></span></div>
 <% end %>

@@ -127,14 +127,13 @@ input {
 }
 
 .float{
-	position:fixed;
-	bottom:60px;
-	right:70px;
-	background-color:#0C9;
+	
+	background-color: darkslategrey;
 	color:#FFF;
-	border-radius:50px;
+	border-radius:10px;
 	text-align:center;
-	box-shadow: 4px 4px 6px #999;
+  box-shadow: 4px 4px 6px #999;
+  margin-bottom: 16px;
 }
 .float a{
   text-decoration: none;
@@ -148,6 +147,6 @@ input {
 }
 .float:hover{
   color: black;
-  background-color: yellow;
+  background-color: powderblue;
   box-shadow: 8px 8px 12px #999;
 }

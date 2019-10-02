@@ -14,7 +14,7 @@ class CitiesController < ApplicationController
 
   def create
     @city = City.new(model_params(:city))
-    if @city.save!
+    if @city.save
       flash[:success] = "City added Succesfully"
       redirect_to cities_path
     else

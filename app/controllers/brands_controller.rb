@@ -14,7 +14,7 @@ class BrandsController < ApplicationController
 
   def create
     @brand = Brand.new(model_params(:brand))
-    if @brand.save!
+    if @brand.save
       flash[:success] = "Brand added Succesfully"
       redirect_to brands_path
     else
