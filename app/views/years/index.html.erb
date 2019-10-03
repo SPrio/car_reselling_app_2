@@ -1,0 +1,37 @@
+<div class="row">
+<div class="col-sm-9"></div>
+<div class="col-sm-2">
+<%= link_to new_year_path, class: 'float btn' do %>
+  <div class="my-float"><%= fa_icon "plus" %>&nbsp;<span>Add New Year Range</span></div>
+<% end %>
+</div>
+</div>
+<% unless @years == [] %>
+  <h1>List of Year Ranges</h1>
+  <table class="table table-bordered">
+    <thead class="thead-light text-center">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Start Year</th>
+        <th scope="col">End Year</th>
+        <th scope="col" colspan="2">Options</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">  
+      <% @years.each do |each_one| %>
+        <tr>
+          <td><%= each_one.id %></td>
+          <td><%= each_one.start %></td>
+          <td><%= each_one.end %></td>
+          <td><%= link_to 'Edit', '/'+'years'+'/'+each_one.id.to_s+'/edit', class: "btn btn-primary" %></td>
+          <td><%= link_to "Destroy", '/'+'years'+'/'+each_one.id.to_s, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class= "jumbotron text-center">
+    <h1>No Year Ranges is currently added to your DB,</h1>
+    <p>Go to Add new and where u can add new Year Ranges, then it will show up in the list</p>
+  </div>
+<% end %>

@@ -41,3 +41,4 @@ KilometerRange.create(name: '10000-20000 km')
 KilometerRange.create(name: '20000-40000 km')
 KilometerRange.create(name: '40000-60000 km')
 
+Year.create(start: 2000, end: 2019)
