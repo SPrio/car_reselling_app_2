@@ -42,3 +42,8 @@ KilometerRange.create(name: '20000-40000 km')
 KilometerRange.create(name: '40000-60000 km')
 
 Year.create(start: 2000, end: 2019)
+
+Condition.create(condition: 'Fair', cost: '₹ 1,26,532 - ₹ 1,37,697')
+Condition.create(condition: 'Good', cost: '₹1,35,464 - ₹ 1,60,026')
+Condition.create(condition: 'Very Good', cost: '₹ 1,57,793 - ₹ 1,68,958')
+Condition.create(condition: 'Excellent', cost: '₹ 1,66,725 - ₹ 1,71,191')

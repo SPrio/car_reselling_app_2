@@ -1,0 +1,37 @@
+<div class="row">
+<div class="col-sm-9"></div>
+<div class="col-sm-2">
+<%= link_to new_condition_path, class: 'float btn' do %>
+  <div class="my-float"><%= fa_icon "plus" %>&nbsp;<span>Add New Car condition and cost</span></div>
+<% end %>
+</div>
+</div>
+<% unless @conditions == [] %>
+  <h1>List of Car condition and cost</h1>
+  <table class="table table-bordered">
+    <thead class="thead-light text-center">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Condition</th>
+        <th scope="col">Cost</th>
+        <th scope="col" colspan="2">Options</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">  
+      <% @conditions.each do |each_one| %>
+        <tr>
+          <td><%= each_one.id %></td>
+          <td><%= each_one.condition %></td>
+          <td><%= each_one.cost %></td>
+          <td><%= link_to 'Edit', '/'+'conditions'+'/'+each_one.id.to_s+'/edit', class: "btn btn-primary" %></td>
+          <td><%= link_to "Destroy", '/'+'conditions'+'/'+each_one.id.to_s, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class= "jumbotron text-center">
+    <h1>No Car condition and cost is currently added to your DB,</h1>
+    <p>Go to Add new and where u can add new Car condition and cost, then it will show up in the list</p>
+  </div>
+<% end %>
