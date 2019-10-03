@@ -25,7 +25,7 @@
           <td><%= each_one.id %></td>
           <td><%= each_one.name %></td>
           <% if var_name == "models" %>
-            <td><%= Brand.find(each_one.brand_id).name %></td>
+            <td><%= get_brand_name(each_one) %></td>
           <% end %>
           <td><%= link_to 'Edit', '/'+var_name+'/'+each_one.id.to_s+'/edit', class: "btn btn-primary" %></td>
           <td><%= link_to "Destroy", '/'+var_name+'/'+each_one.id.to_s, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %></td>

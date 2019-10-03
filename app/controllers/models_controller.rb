@@ -46,6 +46,11 @@ class ModelsController < ApplicationController
     @model = Model.find(params[:id])
   end
 
+  def get_brand_name(model_data)
+    Brand.find(model_data.brand_id).name
+  end
+  helper_method :get_brand_name
+  
   private
   def models_params
     params.require(:model).permit(:name, :brand_id)

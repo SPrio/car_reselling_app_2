@@ -41,7 +41,7 @@ class BrandsController < ApplicationController
     flash[:success] = "brand has been succesfully deleted"
     redirect_to brands_path
   end
-
+  
   def get_brand
     @brand = Brand.find(params[:id])
   end

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:show, :edit, :update]
-  before_action :correct_user,   only: [:show, :edit, :update]
-
+  before_action :logged_in_user, only: [:show, :edit, :update, :car_index]
+  before_action :correct_user,   only: [:show, :edit, :update, :car_index]
+  before_action :if_seller, only: [:car_index]
   def show
     @user = User.find(params[:id])
   end
@@ -39,14 +39,28 @@ class UsersController < ApplicationController
     end
   end
 
+  def car_index
+    
+  end
+  
+  def car_search
+    
+  end
+  
   private
 
     def user_params
       params.require(:user).permit(:name, :email, :password,:password_confirmation, :number, :category)
     end
 
-    # Before filters
+    # Before action
 
+    def if_seller
+      unless current_user.category == 'Seller'
+        flash[:warning] = "please log in as a seller"
+        redirect_to root_path
+      end
+    end
     # Confirms a logged-in user.
     def logged_in_user
       unless logged_in?

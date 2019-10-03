@@ -22,5 +22,7 @@ Rails.application.routes.draw do
   resources :kilometer_ranges
   resources :years
   resources :conditions
+  get '/users/:id/cars_index', to: 'users#car_index'
+  get '/users/cars/search', to: 'users#car_search'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
