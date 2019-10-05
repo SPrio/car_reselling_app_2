@@ -47,3 +47,5 @@ Condition.create(condition: 'Fair', cost: '₹ 1,26,532 - ₹ 1,37,697')
 Condition.create(condition: 'Good', cost: '₹1,35,464 - ₹ 1,60,026')
 Condition.create(condition: 'Very Good', cost: '₹ 1,57,793 - ₹ 1,68,958')
 Condition.create(condition: 'Excellent', cost: '₹ 1,66,725 - ₹ 1,71,191')
+
+Car.create(year: 2019, brand: "Maruti Suzuki", model: "Alto", city: "Kolkata", condition: "Excellent", kilometer_range: "10000-20000 km", state: "WB", variant: "Diesel", user_id: 3)

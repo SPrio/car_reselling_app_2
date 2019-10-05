@@ -1,0 +1,52 @@
+<%= link_to 'Back', cars_path, class: 'btn btn-primary' %>
+<div class="row">
+  <div class="col-md-4 offset-md-4 border">
+  <%= form_for( @car, class: "form-group input-group") do |form| %>
+    <%= render partial: "shared/error_messages", locals: {var: @car} %>
+    <p>
+      <%= form.label :brand %>
+      <br>
+      <%= form.collection_select :brand, Brand.all, :name, :name, include_blank: "Please Select", class: 'form-control' %>
+    </p>
+    
+    <p>
+      <%= form.label :model %>
+      <br>
+      <%= form.grouped_collection_select :model, Brand.all, :models, :name, :name, :name, include_blank: "Please Select", class: 'form-control' %>
+    </p>
+    <p>
+      <%= form.label :variant %>
+      <br>
+      <%= form.collection_select :variant, Variant.all, :name, :name, include_blank: "Please Select", class: 'form-control' %>
+    </p>
+    <p>
+      <%= form.label :kilometer_range %>
+      <br>
+      <%= form.collection_select :kilometer_range, KilometerRange.all, :name, :name, include_blank: "Please Select", class: 'form-control' %>
+    </p>
+    <p>
+      <%= form.label :year %>
+      <br>
+      <%= form.select :year, (((Year.last.start.to_i)..(Year.last.end.to_i)).to_a), include_blank: "Please Select", class: 'form-control' %>
+    </p>
+    <p>
+      <%= form.label :city %>
+      <br>
+      <%= form.collection_select :city, City.all, :name, :name, include_blank: "Please Select", class: 'form-control' %>
+    </p>
+    <p>
+      <%= form.label :state %>
+      <br>
+      <%= form.collection_select :state, State.all, :name, :name , include_blank: "Please Select", class: 'form-control' %>
+    </p> 
+  
+    <p>
+      <%= form.label :condition %>
+      <br>
+      <%= form.collection_select :condition, Condition.all, :condition, :condition , include_blank: "Please Select", class: 'form-control' %>
+    </p> 
+    
+    <p>
+      <%= form.submit var_msg , class: "btn btn-success" %>
+    </p>
+  <% end %>

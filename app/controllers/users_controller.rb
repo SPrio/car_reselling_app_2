@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :if_seller, only: [:car_index]
   def show
     @user = User.find(params[:id])
+    redirect_to cars_path
   end
   def new
     if logged_in?
@@ -40,13 +41,17 @@ class UsersController < ApplicationController
   end
 
   def car_index
-    
+    @cars = Car.all;
   end
   
   def car_search
     
   end
   
+  def car_add
+    
+  end
+
   private
 
     def user_params

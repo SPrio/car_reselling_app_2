@@ -1,0 +1,37 @@
+<%= link_to 'back', cars_path, class: 'btn btn-secondary back-button'%>
+<table class="table table-bordered">
+  <thead class="thead-light text-center">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Brand</th>
+      <th scope="col">Model</th>
+      <th scope="col">Variant</th>
+      <th scope="col">Kilomete Range</th>
+      <th scope="col">State</th>
+      <th scope="col">City</th>
+      <th scope="col">Year</th>
+      <th scope="col">Condition</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody class="text-center">  
+  
+    <tr>
+      <td><%= @car.id %></td>   
+      <td><%= @car.brand %></td> 
+      <td><%= @car.model %></td>       
+      <td><%= @car.variant %></td> 
+      <td><%= @car.kilometer_range %></td> 
+      <td><%= @car.state %></td> 
+      <td><%= @car.city %></td> 
+      <td><%= @car.year %></td> 
+      <td><%= @car.condition %></td> 
+      <td><%= @car.status %></td> 
+    </tr>
+    
+  </tbody>
+</table>
+  <%= link_to 'Show Quotation', quotation_car_path(@car) , class: "btn btn-info" %>
+  <%= link_to 'Set Appointment', '' , class: "btn btn-info" %>
+  <%= link_to 'Edit', edit_car_path(@car) , class: "btn btn-secondary" %>
+  <%= link_to "Destroy", car_path(@car), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>  

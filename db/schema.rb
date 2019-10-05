@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_03_035807) do
+ActiveRecord::Schema.define(version: 2019_10_03_063707) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
+  end
+
+  create_table "cars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "year", null: false
+    t.string "quotation"
+    t.string "brand", null: false
+    t.string "model", null: false
+    t.string "city", null: false
+    t.string "condition", null: false
+    t.string "kilometer_range", null: false
+    t.string "state", null: false
+    t.string "variant", null: false
+    t.string "status", default: "not verified"
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_cars_on_user_id"
   end
 
   create_table "cities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -63,5 +78,6 @@ ActiveRecord::Schema.define(version: 2019_10_03_035807) do
     t.integer "end", null: false
   end
 
+  add_foreign_key "cars", "users"
   add_foreign_key "models", "brands"
 end

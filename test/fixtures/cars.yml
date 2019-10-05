@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  year: 1
+  quotation: MyString
+  brand: MyString
+  model: MyString
+  city: MyString
+  condition: MyString
+  kilometer_range: MyString
+  state: MyString
+  variant: MyString
+  status: MyString
+  user: one
+
+two:
+  year: 1
+  quotation: MyString
+  brand: MyString
+  model: MyString
+  city: MyString
+  condition: MyString
+  kilometer_range: MyString
+  state: MyString
+  variant: MyString
+  status: MyString
+  user: two

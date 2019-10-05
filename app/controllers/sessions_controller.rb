@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
         if user.category == "Buyer"
           redirect_to users_cars_search_path
         else
-          redirect_to controller: 'users', action: 'car_index', id: user.id
+          redirect_to user
         end
       end
     else

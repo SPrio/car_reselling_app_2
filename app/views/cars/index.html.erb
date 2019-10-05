@@ -1,0 +1,53 @@
+<h1>Seller Dashboard</h1>
+<div class="row">
+<div class="col-sm-9"></div>
+<div class="col-sm-2">
+<%= link_to new_car_path, class: 'float btn' do %>
+  <div class="my-float"><%= fa_icon "plus" %>&nbsp;<span>Add New Car</span></div>
+<% end %>
+</div>
+</div>
+<% unless @cars == [] or @cars.nil?%>
+  <h1>List of Cars</h1>
+  <table class="table table-bordered">
+    <thead class="thead-light text-center">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Brand</th>
+        <th scope="col">Model</th>
+        <th scope="col">Variant</th>
+        <th scope="col">Kilomete Range</th>
+        <th scope="col">State</th>
+        <th scope="col">City</th>
+        <th scope="col">Year</th>
+        <th scope="col">Condition</th>
+        <th scope="col">Status</th>
+        <th scope="col" colspan="4">Options</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">  
+      <% @cars.each do |each_one| %>
+        <tr>
+          <td><%= each_one.id %></td>   
+          <td><%= each_one.brand %></td> 
+          <td><%= each_one.model %></td>       
+          <td><%= each_one.variant %></td> 
+          <td><%= each_one.kilometer_range %></td> 
+          <td><%= each_one.state %></td> 
+          <td><%= each_one.city %></td> 
+          <td><%= each_one.year %></td> 
+          <td><%= each_one.condition %></td> 
+          <td><%= each_one.status %></td> 
+          <td><%= link_to 'View Details', car_path(each_one) , class: "btn btn-info" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+<% else %>
+  <div class= "jumbotron text-center">
+    <h1>No Car is currently added to your DB,</h1>
+    <p>Go to Add new and where u can add new Car names, then it will show up in the list</p>
+  </div>
+<% end %>
+
