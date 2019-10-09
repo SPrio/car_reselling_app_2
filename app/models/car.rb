@@ -1,5 +1,6 @@
 class Car < ApplicationRecord
   belongs_to :user
+  has_many :appointments, dependent: :destroy  
   validates :year , presence: true, inclusion: { in: (Year.first.start..Year.first.end).to_a }
   validates :brand , presence: true, inclusion: { in: Brand.all.pluck(:name) }
   validates :model , presence: true, inclusion: { in: Model.all.pluck(:name) }

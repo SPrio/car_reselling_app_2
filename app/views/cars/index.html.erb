@@ -2,13 +2,14 @@
 <div class="row">
 <div class="col-sm-9"></div>
 <div class="col-sm-2">
-<%= link_to new_car_path, class: 'float btn' do %>
+<%= link_to new_user_car_path, class: 'float btn' do %>
   <div class="my-float"><%= fa_icon "plus" %>&nbsp;<span>Add New Car</span></div>
 <% end %>
 </div>
 </div>
 <% unless @cars == [] or @cars.nil?%>
-  <h1>List of Cars</h1>
+  <h3 class="text-center">List of Cars</h3>
+  <br>
   <table class="table table-bordered">
     <thead class="thead-light text-center">
       <tr>
@@ -38,7 +39,7 @@
           <td><%= each_one.year %></td> 
           <td><%= each_one.condition %></td> 
           <td><%= each_one.status %></td> 
-          <td><%= link_to 'View Details', car_path(each_one) , class: "btn btn-info" %></td>
+          <td><%= link_to 'View Details', user_car_path(user_id: current_user, id: each_one) , class: "btn btn-info" %></td>
         </tr>
       <% end %>
     </tbody>

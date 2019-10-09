@@ -1,4 +1,4 @@
-<%= link_to 'back', cars_path, class: 'btn btn-secondary back-button'%>
+<%= link_to 'back', user_cars_path, class: 'btn btn-secondary back-button'%>
 <table class="table table-bordered">
   <thead class="thead-light text-center">
     <tr>
@@ -31,7 +31,35 @@
     
   </tbody>
 </table>
-  <%= link_to 'Show Quotation', quotation_car_path(@car) , class: "btn btn-info" %>
-  <%= link_to 'Set Appointment', '' , class: "btn btn-info" %>
-  <%= link_to 'Edit', edit_car_path(@car) , class: "btn btn-secondary" %>
-  <%= link_to "Destroy", car_path(@car), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>  
+<table class="table">
+  <thead class="thead-dark">
+    <tr><th scope="col" colspan="2" class='text-center'>You can do</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Show the quotation of your car by entering your registered number</th>
+      <td class="text-center"><%= link_to 'Show Quotation', quotation_user_car_path(current_user,@car), class: "btn btn-info" %></td>
+    </tr>
+    <tr>
+      <td>Request an appointment with the Admin for investigation of your car. After this appointment Admin can verify the car</td>
+      <td class="text-center">
+      
+      <% unless @requested %>
+        <%= link_to 'Apply for Appointment', apply_appointment_user_car_path(id: @car, user_id: current_user), class: "btn btn-info" %> 
+        <% else %>
+        <button type="button" class="btn btn-outline-success" disabled>Appointment Requested</button>
+      <% end %>
+      
+          
+      </td>
+    </tr>
+    <tr>
+      <td>Edit your car details</td>
+      <td class="text-center"><%= link_to 'Edit', edit_user_car_path(current_user, @car), class: "btn btn-secondary" %></td>
+    </tr>
+    <tr>
+      <td>Delete your car entry</td>
+      <td class="text-center"><%= link_to "Destroy", user_car_path(current_user, @car), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
+    </tr>
+  </tbody>
+</table>

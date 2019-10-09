@@ -10,6 +10,11 @@ class CarsController < ApplicationController
   end
 
   def show
+    if Appointment.where(car_id: @car.id) == []
+      @requested = false
+    else
+      @requested = true
+    end
   end
 
   def create
@@ -18,7 +23,7 @@ class CarsController < ApplicationController
     @car.quotation = Condition.where(condition: @car.condition).pluck(:cost)[0]
     if @car.save
       flash[:success] = "car added Succesfully"
-      redirect_to cars_path
+      redirect_to user_cars_path
     else
       flash[:danger] = "Failed to add, try again"
       render 'new'
@@ -31,7 +36,7 @@ class CarsController < ApplicationController
   def update
     if @car.update(cars_params)
       flash[:success] = "car has been succesfully Updated"
-      redirect_to cars_path
+      redirect_to user_cars_path
     else
       flash[:danger] = "Failed to update car"
       render "edit"
@@ -41,7 +46,7 @@ class CarsController < ApplicationController
   def destroy
     @car.destroy
     flash[:success] = "car has been succesfully deleted"
-    redirect_to cars_path
+    redirect_to user_cars_path
   end
 
   def get_car
@@ -60,6 +65,21 @@ class CarsController < ApplicationController
       render 'quotation'
     end
   end
+
+  def apply_appointment
+    @car = Car.find(params[:id])
+    @seller = User.find(params[:user_id])
+    @admin = User.where(admin: true)[0]
+    @appointment = Appointment.new(who_user_id: @seller.id, whom_user_id: @admin.id, car_id: @car.id, status: "in process")
+    if @appointment.save
+      flash[:success] = "Your Appointment is in process with admin for inspection of car"
+    else
+      flash[:danger] = "Request failed please retry"
+    end
+    redirect_to user_car_path(id: @car, user_id: @seller)
+  end
+
+  
   private
   def cars_params
     params.require(:car).permit(:brand, :model, :variant, :kilometer_range, :city, :state, :condition, :year)

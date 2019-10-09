@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :if_seller, only: [:car_index]
   def show
     @user = User.find(params[:id])
-    redirect_to cars_path
+    redirect_to user_cars_path(current_user)
   end
   def new
     if logged_in?
@@ -52,6 +52,19 @@ class UsersController < ApplicationController
     
   end
 
+  def my_appointments
+    @admin = User.where(admin: true)[0]
+    @admin_appointments = Appointment.where(whom_user_id: @admin.id)
+    @buyer_appointments = []
+    User.where(category: "Buyer").pluck(:id) do |b_id|
+      @buyer_appointments.append(Appointment.where(whom_user_id: b_id))
+    end
+    #@buyer_appointments = Appointment.where()
+  end
+
+  def places
+    @places = City.all;
+  end
   private
 
     def user_params

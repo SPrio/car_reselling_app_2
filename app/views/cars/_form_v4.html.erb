@@ -1,8 +1,9 @@
-<%= link_to 'Back', cars_path, class: 'btn btn-primary' %>
+<%= link_to 'Back', user_cars_path, class: 'btn btn-primary' %>
 <div class="row">
   <div class="col-md-4 offset-md-4 border">
-  <%= form_for( @car, class: "form-group input-group") do |form| %>
+  <%= form_for( [current_user, @car], class: "form-group input-group") do |form| %>
     <%= render partial: "shared/error_messages", locals: {var: @car} %>
+    <br>
     <p>
       <%= form.label :brand %>
       <br>

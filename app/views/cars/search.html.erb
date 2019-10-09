@@ -1,0 +1,162 @@
+<div>
+  <h1>Search for cars using the below filters</h1>
+  <p>You can search your dream car as per your own preferences</p>
+</div>
+<%= form_tag({controller: "home", action: 'filter_search'}, method: :get) do %>
+<div class="form-group">  
+  <div class="input-group ">  
+    <%= text_field_tag :search, params[:search], class: "form-control",placeholder: "Search for Cars" %>
+    <%= button_tag(type: 'submit', class: 'btn btn-dark') do %>
+      <%= fa_icon "search"%>
+    <% end %>
+  </div>
+</div>
+<%= submit_tag 'Apply filters', :class => 'btn btn-success btn-md'%>
+<%= link_to 'Clear filters', home_filter_search_path, :class => 'btn btn-danger btn-md'%>
+
+<p></p>
+<div class="row">
+  <div class="col-3">
+    <h4 class="text-dark">Filters</h4>
+    <%unless @params_city.blank?%>
+      <% @params_city.each do |c| %>
+        <span class="badge badge-warning"><%= c %></span>
+      <% end %>
+    <% end %>
+    <%unless @params_brand.blank?%>
+      <% @params_brand.each do |c| %>
+        <span class="badge badge-warning"><%= c %></span>
+      <% end %>
+    <% end %>
+    <%unless @params_model.blank?%>
+      <% @params_model.each do |c| %>
+        <span class="badge badge-warning"><%= c %></span>
+      <% end %>
+    <% end %>
+    <%unless @params_registration_year.blank?%>
+      <% @params_registration_year.each do |c| %>
+        <span class="badge badge-warning"><%= c %></span>
+      <% end %>
+    <% end %>
+    <%unless @params_variant.blank?%>
+      <% @params_variant.each do |c| %>
+        <span class="badge badge-warning"><%= c %></span>
+      <% end %>
+    <% end %>
+    <%unless @params_registration_state.blank?%>
+      <% @params_registration_state.each do |c| %>
+        <span class="badge badge-warning"><%= c %></span>
+      <% end %>
+    <% end %>
+    <%unless @params_kilometer_driven.blank?%>
+      <% @params_kilometer_driven.each do |c| %>
+        <span class="badge badge-warning"><%= c %></span>
+      <% end %>
+    <% end %>
+    <ul class="list-group">
+      <li class="list-group-item"><span class=""> Registration state</span>
+        <ul class="list-group">
+          <% CarRegistrationState.all.each do |registration_state| %>     
+            <li class="list-group-item">
+            <%= check_box_tag "registration_state[]", registration_state.name, @params_registration_state&.include?(registration_state.name) ? true : false, class: 'selectable' %>
+            <%= registration_state.name %></li>
+          <% end %>
+        </ul>
+      </li>
+      <li class="list-group-item"><span class=""> City</span>
+        <ul class="list-group">
+          <% CarCity.all.each do |city| %>
+            <li class="list-group-item">
+              <%= check_box_tag "city[]", city.name, @params_city&.include?(city.name) ? true : false, class: 'selectable' %>
+              <%= city.name %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+      <li class="list-group-item"><span class="">Car Brands</span>
+        <ul class="list-group">
+          <% CarBrand.all.each do |brand| %>
+            <li class="list-group-item">
+              <%= check_box_tag "brand[]", brand.name,@params_brand&.include?(brand.name) ? true : false, class: 'selectable' %>
+              <%= brand.name %>
+            </li>     
+          <% end %>
+        </ul>
+      </li>
+      <li class="list-group-item"><span class="">Car Models</span>
+        <ul class="list-group">  
+          <% CarModel.all.each do |model| %>    
+            <li class="list-group-item">
+              <%= check_box_tag "model[]", model.name, @params_model&.include?(model.name) ? true : false, class: 'selectable' %>
+              <%= model.name %>
+            </li> 
+          <% end %>
+        </ul>
+      </li> 
+      <li class="list-group-item"><span class="">Car Variants</span>
+        <ul class="list-group">  
+          <% CarVariant.all.each do |variant| %> 
+            <li class="list-group-item">
+              <%= check_box_tag "variant[]", variant.name, @params_variant&.include?(variant.name) ? true : false, class: 'selectable' %>
+              <%= variant.name %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+      <li class="list-group-item"><span class="">Car Kilometer driven ranges</span>
+        <ul class="list-group">
+          <% CarKilometerDriven.all.each do |kilometer_driven| %>       
+            <li class="list-group-item">
+              <%= check_box_tag "range[]", kilometer_driven.range, @params_kilometer_driven&.include?(kilometer_driven.range) ? true : false, class: 'selectable' %>
+              <%= kilometer_driven.range %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+      <li class="list-group-item"><span class="">Car Registration Year</span>
+        <ul class="list-group">  
+          <% (((CarRegistrationYear.last.start.to_i)..(CarRegistrationYear.last.end.to_i)).to_a).each do |registration_year| %>        <li class="list-group-item">
+              <%= check_box_tag "registration_year[]", registration_year, @params_registration_year&.include?(registration_year) ? true : false , class: 'selectable' %>
+              <%= registration_year %>
+            </li>
+          <% end %>
+        </ul>
+      </li> 
+    </ul>
+  </div>
+<% end %> 
+  <div class="col-9">
+    <% if @cars.blank? %>
+      <h3></h3>
+      <h3 class="text-center">No Result Found</h3>
+    <% else %>
+      <h4 class="border-dark border-bottom" >List of Cars</h4>
+      <table class="table table-hover ">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Brand</th>
+            <th scope="col">Model</th>
+            <th scope="col">Variant</th>
+            <th scope="col">Registration Year</th>
+            <th scope="col">Kilometer Driven</th>
+            <th scope="col">City</th>
+            <th scope="col">Registration State</th>
+            <th scope="col">Details</th>
+          </tr>
+        </thead>
+        <%@cars.each do |car|%>
+          <tr>
+            <td scope="row"><%=car.brand %></td>
+            <td scope="row"><%=car.model %></td>
+            <td scope="row"><%=car.variant %></td>
+            <td scope="row"><%=car.registration_year %></td>
+            <td scope="row"><%=car.kilometer_driven %></td>
+            <td scope="row"><%=car.city %></td>
+            <td scope="row"><%=car.registration_state %></td>
+            <td scope="row" ><%= link_to "Show Quotation", quotation_car_path(car), class: "btn btn-outline-info" %></td>
+          </tr>
+        <% end %>
+      </table>  
+    <% end %>
+  </div>
+</div>

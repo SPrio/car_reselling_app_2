@@ -5,7 +5,7 @@
     <%= link_to "Search for Cars", users_cars_search_path, class: "btn btn-lg btn-primary" %>
   <% else %>
     <% if current_user.category == 'Seller' %>
-      <%= link_to "Seller Dashboard", users_cars_index_path, class: "btn btn-lg btn-primary" %>
+      <%= link_to "Seller Dashboard", user_cars_path(current_user), class: "btn btn-lg btn-primary" %>
     <% elsif current_user.category == 'Buyer'  %>
       <%= link_to "Search for Cars", users_cars_search_path, class: "btn btn-lg btn-primary" %>
     <% elsif current_user.admin %>
