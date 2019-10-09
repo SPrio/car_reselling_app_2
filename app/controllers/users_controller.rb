@@ -59,6 +59,9 @@ class UsersController < ApplicationController
     User.where(category: "Buyer").pluck(:id) do |b_id|
       @buyer_appointments.append(Appointment.where(whom_user_id: b_id))
     end
+    
+    #binding.pry
+    
     #@buyer_appointments = Appointment.where()
   end
 

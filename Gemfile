@@ -67,3 +67,7 @@ gem 'bcrypt',         '3.1.12'
 gem "letter_opener"
 gem "pry-rails"
 gem "font-awesome-rails"
+
+gem 'momentjs-rails', '~> 2.9', :github => 'derekprior/momentjs-rails'
+gem 'bootstrap4-datetime-picker-rails'
+

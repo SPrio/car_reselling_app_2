@@ -13,7 +13,15 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   
   resources :account_activations, only: [:edit]
+
   get '/admin/dashboard', to: 'admin#dashboard'
+  get '/admin/all_appointments', to: 'admin#all_appointments'
+  get '/admin/manage_appointment', to: 'admin#manage_appointment'
+  get '/admin/schedule_appointment', to: 'admin#schedule_appointment'
+  patch '/admin/set_appointment_date', to: 'admin#set_appointment_date'
+  get '/admin/reject_appointment', to: 'admin#reject_appointment'
+  get '/admin/accept_appointment', to: 'admin#accept_appointment'
+
   resources :cities
   resources :brands
   resources :models
@@ -25,6 +33,7 @@ Rails.application.routes.draw do
   # get '/users/:id/cars_index', to: 'users#car_index'
   get '/users/cars/search', to: 'users#car_search'
   # get '/users/car_add', to: 'users#car_add'
+
   resources :users do
     member do
       get 'my_appointments'

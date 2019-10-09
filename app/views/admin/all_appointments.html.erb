@@ -1,29 +1,26 @@
-<h1>My Appointments</h1>
+<h1>Appointment Requests</h1>
 
-
-<h3 class="">Appointments with Admin</h3>
-<br>
 <table class="table table-bordered">
   <thead class="thead-light">
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Car ID</th>
       <th scope="col">Date</th>
-      <th scope="col">with whom</th>
+      <th scope="col">Id of requested User</th>
       <th scope="col">Status</th>
+      <th scope="col" colspan="4">Options</th>
     </tr>
   </thead>
   <tbody>
-    <% @admin_appointments.each do |admin|%>
+    <% @appointments.each do |admin|%>
       <tr>
         <td><%= admin.id %></td>
         <td><%= admin.car_id %></td>
         <td><%= admin.date %></td>
-        <td><%= User.find(admin.whom_user_id).name %></td>
+        <td><%= admin.who_user_id %></td>
         <td><%= admin.status %></td>
+        <td><%= link_to 'manage', admin_manage_appointment_path(id: admin.id), class: "btn btn-secondary" %></td>
       </tr>
     <% end %>
   </tbody>
 <table>
-
-<h3>Appointments with Buyers</h3>

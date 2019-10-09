@@ -1,0 +1,19 @@
+<h1>Schedule the appointment</h1>
+<div class="row">
+  <div class="offset-md-3 col-md-6 form-group">
+    <%= form_for :appointment, url: { action: :set_appointment_date, controller: :admin, id: @ap.id }, html: { method: :patch }  do |form| %>
+      <%= form.label :date, "Pick the date and time for appointment", class: 'control-label' %>        
+      <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+        <%= form.text_field(:date, value: Time.now.strftime('%B %d, %Y %I:%M %p'), class: "form-control datetimepicker-input", data: {target:"#datetimepicker4"}) %>
+        <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+          <div class="input-group-text">
+            <span class="fas fa-calendar-alt"></span>
+          </div>
+        </div>
+      </div>
+      <br>
+      <%= form.submit 'Set time', class:" btn btn-success" %>
+
+    <% end %>
+  </div>
+</div>

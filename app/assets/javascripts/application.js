@@ -16,6 +16,8 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
+//= require moment
+//= require tempusdominus-bootstrap-4.js
 //= require_tree .
 
 $(function() {
