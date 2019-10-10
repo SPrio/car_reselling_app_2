@@ -31,9 +31,10 @@ Rails.application.routes.draw do
   resources :years
   resources :conditions
   # get '/users/:id/cars_index', to: 'users#car_index'
-  get '/users/cars/search', to: 'users#car_search'
+  #get '/users/cars/search', to: 'users#car_search'
   # get '/users/car_add', to: 'users#car_add'
 
+  get '/cars/search', to: 'cars#search'
   resources :users do
     member do
       get 'my_appointments'
@@ -42,12 +43,13 @@ Rails.application.routes.draw do
       get 'places'
     end
     resources :cars do 
+      
       member do 
         get 'quotation'
         get 'apply_appointment'
       end 
       collection do
-        get 'search'
+        
       end
     end
   end 

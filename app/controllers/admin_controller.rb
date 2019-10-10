@@ -27,7 +27,7 @@ class AdminController < ApplicationController
     @ap = Appointment.find(params[:id])
     @ap.date = params[:appointment][:date]
     @ap.status = "approved"
-    if @ap.save
+    if @ap.save and @ap.date
       flash[:success] = "Appointment Scheduled at #{@ap.date}"
       redirect_to admin_manage_appointment_path(id: @ap.id)
     else

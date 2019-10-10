@@ -18,6 +18,7 @@
 //= require turbolinks
 //= require moment
 //= require tempusdominus-bootstrap-4.js
+//= require datetimepicker
 //= require_tree .
 
 $(function() {

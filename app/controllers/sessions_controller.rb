@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       else
         # Log the user in and redirect to the user's show page
         if user.category == "Buyer"
-          redirect_to users_cars_search_path
+          redirect_to cars_search_path
         else
           redirect_to user
         end

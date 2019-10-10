@@ -2,12 +2,12 @@
   <h1 class="display-3">Car Reselling Corporation</h1>
   <p>Here you will get the best price for your car. Please sign up as seller to add your car for reselling. Here you can sign up as buyer to search for cars as per your preferences to buy a car.</p>
   <% if !current_user %>
-    <%= link_to "Search for Cars", users_cars_search_path, class: "btn btn-lg btn-primary" %>
+    <%= link_to "Search for Cars", cars_search_path, class: "btn btn-lg btn-primary" %>
   <% else %>
     <% if current_user.category == 'Seller' %>
       <%= link_to "Seller Dashboard", user_cars_path(current_user), class: "btn btn-lg btn-primary" %>
     <% elsif current_user.category == 'Buyer'  %>
-      <%= link_to "Search for Cars", users_cars_search_path, class: "btn btn-lg btn-primary" %>
+      <%= link_to "Search for Cars", cars_search_path, class: "btn btn-lg btn-primary" %>
     <% elsif current_user.admin %>
       <%= link_to "Admin Dashboard", admin_dashboard_path, class: "btn btn-lg btn-primary" %>
     <% end %>

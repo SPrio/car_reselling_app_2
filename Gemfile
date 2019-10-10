@@ -70,4 +70,7 @@ gem "font-awesome-rails"
 
 gem 'momentjs-rails', '~> 2.9', :github => 'derekprior/momentjs-rails'
 gem 'bootstrap4-datetime-picker-rails'
-
+gem 'jquery-ui-rails'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-datetimepicker'
+end

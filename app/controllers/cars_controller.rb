@@ -79,6 +79,22 @@ class CarsController < ApplicationController
     redirect_to user_car_path(id: @car, user_id: @seller)
   end
 
+  def search
+    #@cars = Car.where(status: 'verified')
+    if params[:search].nil?
+      @cars = Car.where(status: 'verified')
+    else
+      @params_city = params[:city]
+      @params_brand = params[:brand]
+      @params_model = params[:model]
+      @params_registration_year = params[:registration_year]
+      @params_variant = params[:variant]
+      @params_registration_state = params[:registration_state]
+      @params_kilometer_driven = params[:kilometer_driven]
+      @cars = Car.filtered_search(params[:search],params[:city],params[:brand],params[:model],params[:registration_year],params[:variant],params[:registration_state],params[:kilometer_driven])
+      render 'search'
+    end
+  end
   
   private
   def cars_params
