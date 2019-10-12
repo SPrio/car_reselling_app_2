@@ -74,3 +74,5 @@ gem 'jquery-ui-rails'
 source 'https://rails-assets.org' do
   gem 'rails-assets-datetimepicker'
 end
+
+gem 'elasticsearch-model'

@@ -17,7 +17,7 @@
     <tr>
       <td><%= @ap.id %></td>
       <td><%= @ap.car_id %></td>
-      <td><%= @ap.date.strftime('%B %d, %Y %I:%M %p') %></td>
+      <td><%= @ap.date %></td>
       <td><%= @ap.who_user_id %></td>
       <td><%= @ap.status %></td>
       <% unless @ap.status == 'rejected' or @ap.status == 'accepted'%>

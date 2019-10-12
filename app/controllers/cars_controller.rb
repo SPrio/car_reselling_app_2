@@ -1,8 +1,15 @@
 class CarsController < ApplicationController
+  include UsersHelper
   before_action :get_car, only: [:edit, :update, :destroy, :show, :quotation]
+  before_action :logged_in_user, except: [:search]
+  before_action :if_buyer, only: [:view]
+  before_action :if_seller, only: [:show, :edit, :destroy]
+  before_action :correct_log_in, except: [:search, :detail]
+  before_action :correct_user_car, except: [:index, :show, :view, :search, :detail, :quotation]
+  
 
   def index
-    @cars = Car.all
+    @cars = Car.where(user_id: params[:user_id])
   end
 
   def new
@@ -81,8 +88,8 @@ class CarsController < ApplicationController
 
   def search
     #@cars = Car.where(status: 'verified')
-    if params[:search].nil?
-      @cars = Car.where(status: 'verified')
+    if params[:search].nil? 
+      @cars = Car.where(verified: true)
     else
       @params_city = params[:city]
       @params_brand = params[:brand]
@@ -92,13 +99,26 @@ class CarsController < ApplicationController
       @params_registration_state = params[:registration_state]
       @params_kilometer_driven = params[:kilometer_driven]
       @cars = Car.filtered_search(params[:search],params[:city],params[:brand],params[:model],params[:registration_year],params[:variant],params[:registration_state],params[:kilometer_driven])
+      #@cars = @cars.where(status: "verified")
       render 'search'
     end
   end
   
+  def detail
+    redirect_to user_car_path(user_id: current_user.id, id: params[:id])
+  end
+
+  def view
+    @car = Car.find(params[:id])
+  end
+
+  def apply_to_buy
+    
+  end
+
   private
   def cars_params
     params.require(:car).permit(:brand, :model, :variant, :kilometer_range, :city, :state, :condition, :year)
   end
-  
+
 end

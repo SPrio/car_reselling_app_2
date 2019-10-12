@@ -15,19 +15,19 @@
 
 <p></p>
 <div class="row">
-  <div class="col-3">
-    <h4 class="text-dark">Filters</h4>
-    <%unless @params_city.blank?%>
+  <div class="col-3 filters">
+    <h5 class="text-dark">Filters</h5>
+    <% unless @params_city.blank? %>
       <% @params_city.each do |c| %>
         <span class="badge badge-warning"><%= c %></span>
       <% end %>
     <% end %>
-    <%unless @params_brand.blank?%>
+    <% unless @params_brand.blank? %>
       <% @params_brand.each do |c| %>
         <span class="badge badge-warning"><%= c %></span>
       <% end %>
     <% end %>
-    <%unless @params_model.blank?%>
+    <% unless @params_model.blank? %>
       <% @params_model.each do |c| %>
         <span class="badge badge-warning"><%= c %></span>
       <% end %>
@@ -106,7 +106,7 @@
         <ul class="list-group">
           <% KilometerRange.all.each do |kilometer_driven| %>       
             <li class="list-group-item">
-              <%= check_box_tag "range[]", kilometer_driven.name, @params_kilometer_driven&.include?(kilometer_driven.name) ? true : false, class: 'selectable' %>
+              <%= check_box_tag "kilometer_driven[]", kilometer_driven.name, @params_kilometer_driven&.include?(kilometer_driven.name) ? true : false, class: 'selectable' %>
               <%= kilometer_driven.name %>
             </li>
           <% end %>
@@ -137,23 +137,25 @@
             <th scope="col">Brand</th>
             <th scope="col">Model</th>
             <th scope="col">Variant</th>
-            <th scope="col">Registration Year</th>
+            <th scope="col">Year</th>
             <th scope="col">Kilometer Driven</th>
             <th scope="col">City</th>
             <th scope="col">Registration State</th>
+            <th scope="col">Condition</th>
             <th scope="col">Details</th>
           </tr>
         </thead>
-        <%@cars.each do |car|%>
+        <% @cars.each do |car|%>
           <tr>
-            <td scope="row"><%=car.brand %></td>
-            <td scope="row"><%=car.model %></td>
-            <td scope="row"><%=car.variant %></td>
-            <td scope="row"><%=car.year %></td>
-            <td scope="row"><%=car.kilometer_range %></td>
-            <td scope="row"><%=car.city %></td>
-            <td scope="row"><%=car.state %></td>
-            <td scope="row" ><%= link_to "Show Quotation", '', class: "btn btn-outline-info" %></td>
+            <td scope="row"><%= car.brand %></td>
+            <td scope="row"><%= car.model %></td>
+            <td scope="row"><%= car.variant %></td>
+            <td scope="row"><%= car.year %></td>
+            <td scope="row"><%= car.kilometer_range %></td>
+            <td scope="row"><%= car.city %></td>
+            <td scope="row"><%= car.state %></td>
+            <td scope="row"><%= car.condition %></td>
+            <td scope="row" ><%= link_to 'View Details', view_user_car_path(id: car, user_id: current_user) , class: "btn btn-outline-info" %></td>
           </tr>
         <% end %>
       </table>  

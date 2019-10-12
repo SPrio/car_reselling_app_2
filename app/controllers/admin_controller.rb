@@ -53,7 +53,7 @@ class AdminController < ApplicationController
     @ap = Appointment.find(params[:id])
     @ap.status = "accepted"
     @car = Car.find(@ap.car_id)
-    @car.status = "verified"
+    @car.verified = true
     if @ap.save and @car.save 
       flash[:success] = "Car has been accepted"
       redirect_to admin_all_appointments_path

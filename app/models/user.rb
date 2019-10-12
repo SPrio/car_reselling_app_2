@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   validates :category, inclusion: { in: ["Buyer","Seller","Admin"] }, presence: true
   
-  has_many :cars
+  has_many :cars, dependent: :destroy  
 
   class << self
     # Returns the hash digest of the given string.

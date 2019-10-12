@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
+  include UsersHelper
   before_action :logged_in_user, only: [:show, :edit, :update, :car_index]
-  before_action :correct_user,   only: [:show, :edit, :update, :car_index]
-  before_action :if_seller, only: [:car_index]
+  before_action :correct_user,   only: [:show, :edit, :update]
   def show
     @user = User.find(params[:id])
     redirect_to user_cars_path(current_user)
@@ -40,18 +40,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def car_index
-    @cars = Car.all;
-  end
-  
-  def car_search
-    
-  end
-  
-  def car_add
-    
-  end
-
   def my_appointments
     @admin = User.where(admin: true)[0]
     @admin_appointments = Appointment.where(whom_user_id: @admin.id)
@@ -74,26 +62,4 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password,:password_confirmation, :number, :category)
     end
 
-    # Before action
-
-    def if_seller
-      unless current_user.category == 'Seller'
-        flash[:warning] = "please log in as a seller"
-        redirect_to root_path
-      end
-    end
-    # Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        store_location  
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
-
-    # Confirms the correct user.
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
-    end
 end

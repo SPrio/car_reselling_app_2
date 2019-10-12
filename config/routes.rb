@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   # get '/users/car_add', to: 'users#car_add'
 
   get '/cars/search', to: 'cars#search'
+  get '/cars/detail', to: 'cars#detail'
   resources :users do
     member do
       get 'my_appointments'
@@ -47,6 +48,7 @@ Rails.application.routes.draw do
       member do 
         get 'quotation'
         get 'apply_appointment'
+        get 'view'
       end 
       collection do
         
