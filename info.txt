@@ -1,0 +1,64 @@
+
+    #  @cars = self.search({
+    #        "query": {
+    #          "bool": {
+    #              "filter":[ {
+                    
+    #                          "term": { "verified": true }
+                         
+    #                },
+		# 	{"term": { "sold": false }}
+		# 	]
+    #            }
+    #      }
+    #  }
+    # )
+
+    #   self.search({
+    #       "query": {
+    #         "bool": {
+    #             "must": {
+    #                "multi_match": {
+    #                     "query": search,
+    #                     "fields": [:city, :brand, :model, :registration_year, :variant, :registration_state, :kilometer_driven]
+    #                   }
+    #               },
+    #             "filter": {
+    #                 "bool": {
+    #                     "must": {
+    #                         "match": { :city => city }
+    #                       }
+    #                   }
+    #               }
+    #           }
+    #     }
+    
+    # })
+
+    //////////////////////////////////////////////////
+    
+search_query =
+    {
+    query: {
+            bool: {
+                # must: {
+                # "match": {
+                #     status: "verified"
+                # }
+                #    multi_match: {
+                #         query: search,
+                #         fields: [:city, :brand, :model, :registration_year, :variant, :registration_state, :kilometer_driven]
+                #       }
+                #  }
+                # filter: {
+                #   bool: {
+                #         must: {
+                #             terms: { "status.raw" => "verified" }
+                #           }
+                #       }
+                # }
+                #}
+        }
+      }
+    }
+    
