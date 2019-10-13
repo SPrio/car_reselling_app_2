@@ -1,7 +1,7 @@
 <header>
   <nav class="navbar navbar-expand-sm fixed-top navbar-inverse navbar-dark bg-dark">   
     <div class="container">     
-      <a class="navbar-brand" href="/home/index">Car Reselling Corp.</a> 
+      <%= link_to 'Car Reselling Corp.', root_path, class: "navbar-brand" %> 
       <ul class="nav navbar-nav ml-auto">         
         <% if logged_in? %>
           <% if current_user.admin  %>

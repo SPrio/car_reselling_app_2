@@ -45,9 +45,8 @@ class Car < ApplicationRecord
     }
     
 
-    filter_query = [{
-                      term: { verified: true}
-                    },
+    filter_query = [{term: { verified: true }},
+                    {term: { sold: false }},
                     { bool: {
                         should: [{
                             # match: { status: "verified" }
@@ -131,7 +130,7 @@ class Car < ApplicationRecord
     # filter_query[:bool][:must] << variant_filter unless variant.blank?
 
     # registration_state_filter = { match:{ registration_state: registration_state }}
-    # filter_query[:bool][:must] << registration_state_filter unless registration_state.blank?
+    # filter_query[:bool.,][:must] << registration_state_filter unless registration_state.blank?
 
     # kilometer_driven_filter = { match:{ kilometer_driven: kilometer_driven }}
     # filter_query[:bool][:must] << kilometer_driven_filter unless kilometer_driven.blank?
@@ -147,22 +146,24 @@ class Car < ApplicationRecord
     
     print "search query ", search_query
 
-    @cars = self.search(
-      search_query
-    )
+    #@cars = self.search(
+    # search_query
+    #)
 
-    # @cars = self.search({
-    #       "query": {
-    #         "bool": {
-    #             "filter": {
+     @cars = self.search({
+           "query": {
+             "bool": {
+                 "filter":[ {
                     
-    #                         "term": { "verified": true }
+                             "term": { "verified": true }
                          
-    #               }
-    #           }
-    #     }
-    # }
-    # )
+                   },
+			{"term": { "sold": false }}
+			]
+               }
+         }
+     }
+    )
 
     #   self.search({
     #       "query": {

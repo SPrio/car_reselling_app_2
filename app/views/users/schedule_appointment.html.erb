@@ -1,0 +1,14 @@
+<h1>Schedule the appointment</h1>
+<%= link_to 'Back', my_appointments_user_path(current_user), class: 'btn btn-primary' %>
+<div class="row">
+  <div class="offset-md-3 col-md-6 form-group">
+    <%= form_for :appointment, url: { action: :set_appointment_date, controller: :users, id: @ap.id }, html: { method: :patch }  do |form| %>
+      <%= form.label :date, 'Enter date and time', class: 'control-label' %><br>
+      <%= form.datetime_field(:date, value: Time.now, class:"form-control") %>
+      <br>
+      <%= form.submit 'Set time', class:" btn btn-success" %>
+
+
+    <% end %>
+  </div>
+</div>

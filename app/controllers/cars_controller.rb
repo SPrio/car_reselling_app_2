@@ -5,7 +5,7 @@ class CarsController < ApplicationController
   before_action :if_buyer, only: [:view]
   before_action :if_seller, only: [:show, :edit, :destroy]
   before_action :correct_log_in, except: [:search, :detail]
-  before_action :correct_user_car, except: [:index, :show, :view, :search, :detail, :quotation]
+  before_action :correct_user_car, except: [:buy_request, :index, :show, :view, :search, :detail, :quotation]
   
 
   def index
@@ -89,7 +89,7 @@ class CarsController < ApplicationController
   def search
     #@cars = Car.where(status: 'verified')
     if params[:search].nil? 
-      @cars = Car.where(verified: true)
+      @cars = Car.where(verified: true, sold: false)
     else
       @params_city = params[:city]
       @params_brand = params[:brand]
@@ -103,19 +103,40 @@ class CarsController < ApplicationController
       render 'search'
     end
   end
-  
+
   def detail
-    redirect_to user_car_path(user_id: current_user.id, id: params[:id])
+    redirect_to view_user_car_path(user_id: current_user.id, id: params[:id])
   end
 
   def view
     @car = Car.find(params[:id])
   end
 
-  def apply_to_buy
-    
+  def buyer_appointment
+    @ap = Appointment.find(params[:id])
+    @ap.date = params[:appointment][:date]
+    @ap.status = "approved"
+    if @ap.save and @ap.date
+      flash[:success] = "Appointment Scheduled at #{@ap.date}"
+      redirect_to admin_manage_appointment_path(id: @ap.id)
+    else
+      flash[:danger] = "Failed to fix appointment"
+      render 'schedule_appointment'
+    end
   end
-
+  
+  def buy_request
+    @car = Car.find(params[:id])
+    @buyer = User.find(params[:user_id])
+    @appointment = Appointment.new(who_user_id: @car.user_id, whom_user_id: params[:user_id], car_id: params[:id], status: "in process")
+    if @appointment.save
+      flash[:success] = "Your Appointment is in process with admin for inspection of car"
+    else
+      flash[:danger] = "Request failed please retry"
+    end
+    redirect_to view_user_car_path(id: @car, user_id: @buyer)
+  end
+  
   private
   def cars_params
     params.require(:car).permit(:brand, :model, :variant, :kilometer_range, :city, :state, :condition, :year)

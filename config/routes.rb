@@ -39,6 +39,11 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get 'my_appointments'
+      get 'manage_appointment'
+      get 'schedule_appointment'
+      patch 'set_appointment_date'
+      get 'accept_appointment'
+      get 'reject_appointment'
     end
     collection do
       get 'places'
@@ -49,6 +54,8 @@ Rails.application.routes.draw do
         get 'quotation'
         get 'apply_appointment'
         get 'view'
+        get 'buy_request'
+      
       end 
       collection do
         

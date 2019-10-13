@@ -1,8 +1,7 @@
 <h1>My Appointments</h1>
 
-
+<% if @user.category == "Seller" %>
 <h3 class="">Appointments with Admin</h3>
-<br>
 <table class="table table-bordered">
   <thead class="thead-light">
     <tr>
@@ -25,5 +24,59 @@
     <% end %>
   </tbody>
 <table>
+  <br>
+  <h3>Appointments with Buyers</h3>
+  <table class="table table-bordered">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Car ID</th>
+      <th scope="col">Date</th>
+      <th scope="col">with whom</th>
+      <th scope="col">Status</th>
+      <th scope="col">Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @buyer_appointments.each do |b|%>
+      <tr>
+        <td><%= b[0].id %></td>
+        <td><%= b[0].car_id %></td>
+        <td><%= b[0].date %></td>
+        <td><%= User.find(b[0].whom_user_id).name %></td>
+        <td><%= b[0].status %></td>
+        <td><%= link_to "manage", manage_appointment_user_path(id: b[0].whom_user_id), class: "btn btn-info" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+<table>
 
-<h3>Appointments with Buyers</h3>
+
+<% else %>
+  <h3 class="">Appointments with Seller</h3>
+<br>
+<table class="table table-bordered">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Car ID</th>
+      <th scope="col">Date</th>
+      <th scope="col">with whom</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @seller_appointments.each do |sa|%>
+      <tr>
+        <td><%= sa.id %></td>
+        <td><%= sa.car_id %></td>
+        <td><%= sa.date %></td>
+        <td><%= User.find(sa.who_user_id).name %></td>
+        <td><%= sa.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+<table>
+
+   
+<% end %>

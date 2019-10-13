@@ -155,7 +155,7 @@
             <td scope="row"><%= car.city %></td>
             <td scope="row"><%= car.state %></td>
             <td scope="row"><%= car.condition %></td>
-            <td scope="row" ><%= link_to 'View Details', view_user_car_path(id: car, user_id: current_user) , class: "btn btn-outline-info" %></td>
+            <td scope="row" ><%= link_to 'View Details', cars_detail_path(id: car) , class: "btn btn-outline-info" %></td>
           </tr>
         <% end %>
       </table>  

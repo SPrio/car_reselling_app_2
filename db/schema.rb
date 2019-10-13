@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_12_034314) do
+ActiveRecord::Schema.define(version: 2019_10_12_181712) do
 
   create_table "appointments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "date"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2019_10_12_034314) do
     t.string "variant", null: false
     t.bigint "user_id", null: false
     t.boolean "verified", default: false
+    t.boolean "sold", default: false
     t.index ["user_id"], name: "index_cars_on_user_id"
   end
 

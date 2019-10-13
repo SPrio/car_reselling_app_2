@@ -10,25 +10,23 @@
       <th scope="col">State</th>
       <th scope="col">City</th>
       <th scope="col">Year</th>
-      <th scope="col">Condition</th>     
+      <th scope="col">Condition</th>
       <th scope="col">Verified</th>
     </tr>
   </thead>
-  <tbody class="text-center">  
-  
+  <tbody class="text-center">
     <tr>
-      <td><%= @car.id %></td>   
-      <td><%= @car.brand %></td> 
-      <td><%= @car.model %></td>       
-      <td><%= @car.variant %></td> 
-      <td><%= @car.kilometer_range %></td> 
-      <td><%= @car.state %></td> 
-      <td><%= @car.city %></td> 
-      <td><%= @car.year %></td> 
-      <td><%= @car.condition %></td>      
-      <td><%= @car.verified %></td> 
+      <td><%= @car.id %></td>
+      <td><%= @car.brand %></td>
+      <td><%= @car.model %></td>
+      <td><%= @car.variant %></td>
+      <td><%= @car.kilometer_range %></td>
+      <td><%= @car.state %></td>
+      <td><%= @car.city %></td>
+      <td><%= @car.year %></td>
+      <td><%= @car.condition %></td>
+      <td><%= @car.verified %></td>
     </tr>
-    
   </tbody>
 </table>
 <table class="table">
@@ -43,16 +41,8 @@
     <tr>
       <td>Request an appointment with the Seller to buy the car.</td>
       <td class="text-center">
-      
-      <% unless @requested %>
-        <%= link_to 'Buy car', apply_appointment_user_car_path(id: @car, user_id: current_user), class: "btn btn-info" %> 
-        <% else %>
-        <button type="button" class="btn btn-outline-success" disabled>Appointment Requested</button>
-      <% end %>
-      
-          
+        <%= link_to 'Buy car', buy_request_user_car_path(id: @car, user_id: current_user), class: "btn btn-info" %>
       </td>
     </tr>
-    
   </tbody>
 </table>
