@@ -48,7 +48,15 @@ Condition.create(condition: 'Good', cost: '₹1,35,464 - ₹ 1,60,026')
 Condition.create(condition: 'Very Good', cost: '₹ 1,57,793 - ₹ 1,68,958')
 Condition.create(condition: 'Excellent', cost: '₹ 1,66,725 - ₹ 1,71,191')
 
-User.create(name: "flash", email: "flash@mail.com", password: "qwerty", password_confirmation: "qwerty", activated: true, activated_at: Time.now, number: "9547276700", category: "Seller")
+#admin user
+User.create(name: "Admin", email: "administrator@mail.com", password: "administrator", password_confirmation: "administrator", activated: true, activated_at: Time.now, number: "9547276700", category: "Admin", admin: true)
+
+#seller and buyer
+User.create(name: "Rio", email: "rio@mail.com", password: "qwerty", password_confirmation: "qwerty", activated: true, activated_at: Time.now, number: "9547276700", category: "Seller")
+User.create(name: "Flash", email: "flash@mail.com", password: "qwerty", password_confirmation: "qwerty", activated: true, activated_at: Time.now, number: "9547276700", category: "Buyer")
+User.create(name: "Sup", email: "sup@mail.com", password: "qwerty", password_confirmation: "qwerty", activated: true, activated_at: Time.now, number: "9547276700", category: "Seller")
+User.create(name: "matt", email: "matt@mail.com", password: "qwerty", password_confirmation: "qwerty", activated: true, activated_at: Time.now, number: "9547276700", category: "Buyer")
+
 
 Car.__elasticsearch__.create_index!(force: true)
 Car.create(year: 2019, brand: "Maruti Suzuki", model: "Alto", city: "Kolkata", condition: "Excellent", kilometer_range: "10000-20000 km", state: "WB", variant: "Diesel", user_id: 3)
