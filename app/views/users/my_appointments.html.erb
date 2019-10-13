@@ -1,6 +1,8 @@
 <h1>My Appointments</h1>
 
+
 <% if @user.category == "Seller" %>
+<%= link_to 'apply for new appointment', user_cars_path(current_user), class: 'btn btn-secondary back-button'%>
 <h3 class="">Appointments with Admin</h3>
 <table class="table table-bordered">
   <thead class="thead-light">
@@ -53,6 +55,7 @@
 
 
 <% else %>
+<%= link_to 'apply for new appointment', cars_search_path, class: 'btn btn-secondary back-button'%>
   <h3 class="">Appointments with Seller</h3>
 <br>
 <table class="table table-bordered">

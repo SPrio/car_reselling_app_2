@@ -51,14 +51,19 @@ class AdminController < ApplicationController
 
   def accept_appointment
     @ap = Appointment.find(params[:id])
-    @ap.status = "accepted"
-    @car = Car.find(@ap.car_id)
-    @car.verified = true
-    if @ap.save and @car.save 
-      flash[:success] = "Car has been accepted"
-      redirect_to admin_all_appointments_path
+    unless @ap.date.nil?
+      @ap.status = "accepted"
+      @car = Car.find(@ap.car_id)
+      @car.verified = true
+      if @ap.save and @car.save 
+        flash[:success] = "Car has been accepted"
+        redirect_to admin_all_appointments_path
+      else
+        flash[:warning] = "retry"
+        render 'manage_appointment'
+      end
     else
-      flash[:warning] = "retry"
+      flash[:warning] = "Scheduled is not yet fixed"
       render 'manage_appointment'
     end
   end

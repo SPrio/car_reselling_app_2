@@ -46,10 +46,12 @@
       <td>Request an appointment with the Admin for investigation of your car. After this appointment Admin can verify the car</td>
       <td class="text-center">
       
-      <% unless @requested %>
+      <% if !@requested %>
         <%= link_to 'Apply for Appointment', apply_appointment_user_car_path(id: @car, user_id: current_user), class: "btn btn-info" %> 
-        <% else %>
-        <button type="button" class="btn btn-outline-success" disabled>Appointment Requested</button>
+      <% elsif @car.verified %>
+        <button type="button" class="btn btn-outline-success" disabled>Car Approved</button>
+      <% else %>
+        <button type="button" class="btn btn-outline-info" disabled>Appointment Requested</button>
       <% end %>
       
           
