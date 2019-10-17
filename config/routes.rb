@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     end
     collection do
       get 'places'
+      get 'appointment_status'
     end
     resources :cars do 
       

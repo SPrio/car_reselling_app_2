@@ -1,9 +1,9 @@
 class NotificationsController < ApplicationController
   #before_action :logged_in_user
-  skip_before_action :verify_authenticity_token, only: [:mark_as_read]
+  #skip_before_action :verify_authenticity_token, only: [:mark_as_read]
 
   def index
-    @notifications = Notification.where(recipient: current_user).unread.order("created_at DESC")
+    @notifications = Notification.where(recipient: current_user).unread 
     # unless @notifications != []
     #   @notifications = Notification.where(recipient: current_user).last(10)
     # end

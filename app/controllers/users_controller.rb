@@ -45,7 +45,7 @@ class UsersController < ApplicationController
     @admin = User.where(admin: true)[0]
     #binding.pry
     @user = User.find(params[:id])
-    @admin_appointments = Appointment.where(whom_user_id: @admin.id, who_user_id: params[:id])
+    @admin_appointments = Appointment.where(whom_user_id: @admin.id, who_user_id: params[:id]) if @admin
     @buyer_appointments = []
     User.where(category: "Buyer").pluck(:id).each do |b_id|
       Appointment.where(who_user_id: @user, whom_user_id: b_id).each do |each_buyer|
@@ -125,9 +125,19 @@ class UsersController < ApplicationController
       render 'manage_appointment'
     end
   end
+
   def places
     @places = City.all;
   end
+
+  def appointment_status
+    if params[:status].blank?
+      @appointment = nil
+    else
+      @appointment ? Appointment.find(params[:status]) : nil
+    end
+  end
+
   private
 
     def user_params

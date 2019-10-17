@@ -1,0 +1,30 @@
+<h1>Check your appointment status</h1>
+<div class="row justify-content-center">
+  <div class="col-sm-5">
+    <%= form_tag( { controller: "users", :action => 'appointment_status' }, method: :get ) do %>
+      <div class="form-inline my-2 my-lg-0">
+      <%= text_field_tag :status, params[:status], placeholder: "Enter your appointment id", class:"form-control mr-sm-2" %>
+      <%= submit_tag "check status", class: "btn btn-info my-2 my-sm-0" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<br>
+<% unless @appointment.blank? %>
+  <table class="table">
+    <tr class="thead-light">
+      <th scope="col">Appointment Id</th>
+      <th scope="col">Appointment Date</th>
+      <th scope="col">Car Id</th>
+      <th scope="col">Status</th>
+    </tr>  
+    <tr>
+      <td><%= @appointment.id %></td>
+      <td><%= @appointment.date %></td>
+      <td><%= @appointment.car_id %></td>
+      <td><%= @appointment.status %></td>
+    </tr> 
+  </table>
+<% else %>
+  <h3 class="text-center" >No results found</h3>
+<%end%>

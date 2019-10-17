@@ -5,55 +5,61 @@
       <%= link_to "Apply for New appointment", user_cars_path(current_user), class: "btn btn-success btn-lg back-button"%>
     </div>
   </div>
-  <h3 class="">Appointments with Admin</h3>
-  <table class="table table-bordered">
-    <thead class="thead-light">
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Car ID</th>
-        <th scope="col">Date</th>
-        <th scope="col">with whom</th>
-        <th scope="col">Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @admin_appointments.each do |admin|%>
+
+  <% if @admin_appointments && @admin_appointments.blank? %>
+    <h3 class="">Appointments with Admin</h3>
+    <table class="table table-bordered">
+      <thead class="thead-light">
         <tr>
-          <td><%= admin.id %></td>
-          <td><%= admin.car_id %></td>
-          <td><%= admin.date %></td>
-          <td><%= User.find(admin.whom_user_id).name %></td>
-          <td><%= admin.status %></td>
+          <th scope="col">ID</th>
+          <th scope="col">Car ID</th>
+          <th scope="col">Date</th>
+          <th scope="col">with whom</th>
+          <th scope="col">Status</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @admin_appointments.each do |admin|%>
+          <tr>
+            <td><%= admin.id %></td>
+            <td><%= admin.car_id %></td>
+            <td><%= admin.date %></td>
+            <td><%= User.find(admin.whom_user_id).name %></td>
+            <td><%= admin.status %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
   <br>
-  <h3>Appointments with Buyers</h3>
-  <table class="table table-bordered">
-    <thead class="thead-light">
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Car ID</th>
-        <th scope="col">Date</th>
-        <th scope="col">with whom</th>
-        <th scope="col">Status</th>
-        <th scope="col">Options</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @buyer_appointments.each do |b|%>
+  
+  <% if @buyer_appointments && @buyer_appointments != [] %>
+    <h3>Appointments with Buyers</h3>
+    <table class="table table-bordered">
+      <thead class="thead-light">
         <tr>
-          <td><%= b.id %></td>
-          <td><%= b.car_id %></td>
-          <td><%= b.date %></td>
-          <td><%= User.find(b.whom_user_id).name %></td>
-          <td><%= b.status %></td>
-          <td><%= link_to "manage", manage_appointment_user_path(a_id: b.id), class: "btn btn-info" %></td>
+          <th scope="col">ID</th>
+          <th scope="col">Car ID</th>
+          <th scope="col">Date</th>
+          <th scope="col">with whom</th>
+          <th scope="col">Status</th>
+          <th scope="col">Options</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @buyer_appointments.each do |b|%>
+          <tr>
+            <td><%= b.id %></td>
+            <td><%= b.car_id %></td>
+            <td><%= b.date %></td>
+            <td><%= User.find(b.whom_user_id).name %></td>
+            <td><%= b.status %></td>
+            <td><%= link_to "manage", manage_appointment_user_path(a_id: b.id), class: "btn btn-info" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 <% else %>
   <div class= "row">
     <div class="offset-md-8 col-3">

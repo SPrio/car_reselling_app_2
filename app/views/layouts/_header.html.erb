@@ -28,7 +28,7 @@
                 <%= link_to "My appointment", my_appointments_user_path(current_user), class: "dropdown-item" %>
                 <%= link_to "Branches", places_users_path, class: "dropdown-item" %>
                 <%= link_to "My Profile", edit_user_path(current_user), class: "dropdown-item" %>
-                <%= link_to "Status", edit_user_path(current_user), class: "dropdown-item" %>
+                <%= link_to "Status", appointment_status_users_path, class: "dropdown-item" %>
                 <!--<%= link_to "Profile", current_user, class: "dropdown-item" %>-->
                 <div class="dropdown-divider"></div>
                 <%= link_to "Log out", logout_path, method: :delete, class: "dropdown-item" %>

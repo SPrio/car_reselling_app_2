@@ -48,10 +48,12 @@
       
       <% if !@requested %>
         <%= link_to "Apply for Appointment", apply_appointment_user_car_path(id: @car, user_id: current_user), class: "btn btn-info" %> 
+      <% elsif @car.sold %>
+        <button type="button" class="btn btn-outline-success" disabled>Car has been sold!</button>
       <% elsif @car.verified %>
-        <button type="button" class="btn btn-outline-success" disabled>Car Approved</button>
+        <button type="button" class="btn btn-outline-info" disabled>Car Approved</button>
       <% else %>
-        <button type="button" class="btn btn-outline-info" disabled>Appointment Requested</button>
+        <button type="button" class="btn btn-outline-warning" disabled>Appointment Requested</button>
       <% end %>
       
           

@@ -78,7 +78,9 @@ class CarsController < ApplicationController
     @seller = User.find(params[:user_id])
     @admin = User.where(admin: true)[0]
     @appointment = Appointment.new(who_user_id: @seller.id, whom_user_id: @admin.id, car_id: @car.id, status: "in process")
+    
     if @appointment.save
+      Notification.create(recipient: @seller, actor: @admin, action: "Your Appointment for car verification is in process", notifiable: @appointment)
       flash[:success] = "Your Appointment is in process with admin for inspection of car"
     else
       flash[:danger] = "Request failed please retry"
