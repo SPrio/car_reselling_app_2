@@ -1,12 +1,13 @@
-<%= link_to 'Back', '/'+var_name, class: 'btn btn-primary' %>
-<div class="row">
-  <div class="col-md-4 offset-md-4">
+<%= link_to "Back", "/"+var_name, class: "btn btn-primary" %>
+<div class="row justify-content-center">
+  <div class="col-md-4">
     <%= form_for(var_object) do |f| %>
       <%= render partial: "shared/error_messages", locals: {var: var_object} %>
-
       <% var_model.column_names[1,var_model.column_names.length].each do |col|%>
-      <%= f.label col %>
-      <%= f.text_field col, class: 'form-control', required: true %>
+      <div class="form-group">  
+        <%= f.label col %>
+        <%= f.text_field col, class: "form-control", required: true %>
+      </div>
       <% end %>
       <%= f.submit var_msg, class: "btn btn-success" %>
     <% end %>

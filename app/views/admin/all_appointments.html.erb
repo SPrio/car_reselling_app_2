@@ -1,26 +1,30 @@
-<h1>Appointment Requests</h1>
-
-<table class="table table-bordered">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Car ID</th>
-      <th scope="col">Date</th>
-      <th scope="col">Id of requested User</th>
-      <th scope="col">Status</th>
-      <th scope="col" colspan="4">Options</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @appointments.each do |admin|%>
+<% if @appointments != [] %>
+  <h1>Appointment Requests</h1>
+  <table class="table table-bordered">
+    <thead class="thead-light">
       <tr>
-        <td><%= admin.id %></td>
-        <td><%= admin.car_id %></td>
-        <td><%= admin.date ? admin.date : "not scheduled yet"%></td>
-        <td><%= admin.who_user_id %></td>
-        <td><%= admin.status %></td>
-        <td><%= link_to "manage", admin_manage_appointment_path(id: admin.id), class: "btn btn-secondary" %></td>
+        <th scope="col">ID</th>
+        <th scope="col">Car ID</th>
+        <th scope="col">Date</th>
+        <th scope="col">Id of requested User</th>
+        <th scope="col">Status</th>
+        <th scope="col" colspan="4">Options</th>
       </tr>
-    <% end %>
-  </tbody>
-<table>
+    </thead>
+    <tbody>
+      <% @appointments.each do |admin|%>
+        <tr>
+          <td><%= admin.id %></td>
+          <td><%= admin.car_id %></td>
+          <td><%= admin.date ? admin.date : "not scheduled yet"%></td>
+          <td><%= admin.who_user_id %></td>
+          <td><%= admin.status %></td>
+          <td><%= link_to "manage", admin_manage_appointment_path(id: admin.id), class: "btn btn-secondary" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <table>  
+<% else %>
+  <h3 class="text-center">No Appointment has been requested</h3>
+<% end %>
+

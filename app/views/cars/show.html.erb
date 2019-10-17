@@ -1,4 +1,4 @@
-<%= link_to 'back', user_cars_path, class: 'btn btn-secondary back-button'%>
+<%= link_to "back", user_cars_path, class: "btn btn-secondary back-button"%>
 <table class="table table-bordered">
   <thead class="thead-light text-center">
     <tr>
@@ -35,19 +35,19 @@
 </table>
 <table class="table">
   <thead class="thead-dark">
-    <tr><th scope="col" colspan="2" class='text-center'>You can do</th></tr>
+    <tr><th scope="col" colspan="2" class="text-center">You can do</th></tr>
   </thead>
   <tbody>
     <tr>
       <td>Show the quotation of your car by entering your registered number</th>
-      <td class="text-center"><%= link_to 'Show Quotation', quotation_user_car_path(current_user,@car), class: "btn btn-info" %></td>
+      <td class="text-center"><%= link_to "Show Quotation", quotation_user_car_path(current_user,@car), class: "btn btn-info" %></td>
     </tr>
     <tr>
       <td>Request an appointment with the Admin for investigation of your car. After this appointment Admin can verify the car</td>
       <td class="text-center">
       
       <% if !@requested %>
-        <%= link_to 'Apply for Appointment', apply_appointment_user_car_path(id: @car, user_id: current_user), class: "btn btn-info" %> 
+        <%= link_to "Apply for Appointment", apply_appointment_user_car_path(id: @car, user_id: current_user), class: "btn btn-info" %> 
       <% elsif @car.verified %>
         <button type="button" class="btn btn-outline-success" disabled>Car Approved</button>
       <% else %>
@@ -59,7 +59,7 @@
     </tr>
     <tr>
       <td>Edit your car details</td>
-      <td class="text-center"><%= link_to 'Edit', edit_user_car_path(current_user, @car), class: "btn btn-secondary" %></td>
+      <td class="text-center"><%= link_to "Edit", edit_user_car_path(current_user, @car), class: "btn btn-secondary" %></td>
     </tr>
     <tr>
       <td>Delete your car entry</td>

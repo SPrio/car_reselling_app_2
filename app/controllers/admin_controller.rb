@@ -57,7 +57,7 @@ class AdminController < ApplicationController
       @car.verified = true
       if @ap.save and @car.save 
         flash[:success] = "Car has been accepted"
-        redirect_to admin_manage_appointment_path(id: @ap.whom_user_id)
+        redirect_to admin_manage_appointment_path(id: @ap.id)
       else
         flash[:warning] = "retry"
         render 'manage_appointment'

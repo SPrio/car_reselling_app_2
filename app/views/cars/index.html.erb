@@ -2,7 +2,7 @@
 <div class="row">
 <div class="col-sm-9"></div>
 <div class="col-sm-2">
-<%= link_to new_user_car_path, class: 'float btn' do %>
+<%= link_to new_user_car_path, class: "float btn" do %>
   <div class="my-float"><%= fa_icon "plus" %>&nbsp;<span>Add New Car</span></div>
 <% end %>
 </div>
@@ -41,7 +41,7 @@
           <td><%= each_one.condition %></td> 
           <td><%= each_one.verified %></td>
           <td><%= each_one.sold %></td> 
-          <td><%= link_to 'View Details', user_car_path(user_id: current_user, id: each_one) , class: "btn btn-info" %></td>
+          <td><%= link_to "View Details", user_car_path(user_id: current_user, id: each_one) , class: "btn btn-info" %></td>
         </tr>
       <% end %>
     </tbody>

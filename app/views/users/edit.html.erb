@@ -6,10 +6,10 @@
       <%= render partial: "shared/error_messages", locals: {var: @user} %>
 
       <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+      <%= f.email_field :email, class: "form-control" %>
 
-      <%= f.label :number, 'Phone Number' %>
-      <%= f.telephone_field :number, class: 'form-control' %>
+      <%= f.label :number, "Phone Number" %>
+      <%= f.telephone_field :number, class: "form-control" %>
 
       <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>

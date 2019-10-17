@@ -4,9 +4,9 @@
   <% if !current_user %>
     <%= link_to "Search for Cars", cars_search_path, class: "btn btn-lg btn-primary" %>
   <% else %>
-    <% if current_user.category == 'Seller' %>
+    <% if current_user.category == "Seller" %>
       <%= link_to "Seller Dashboard", user_cars_path(current_user), class: "btn btn-lg btn-primary" %>
-    <% elsif current_user.category == 'Buyer'  %>
+    <% elsif current_user.category == "Buyer"  %>
       <%= link_to "Search for Cars", cars_search_path, class: "btn btn-lg btn-primary" %>
     <% elsif current_user.admin %>
       <%= link_to "Admin Dashboard", admin_dashboard_path, class: "btn btn-lg btn-primary" %>

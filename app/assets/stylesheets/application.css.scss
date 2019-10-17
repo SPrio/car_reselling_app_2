@@ -94,6 +94,7 @@ $gray-medium-light: #eaeaea;
   margin-top: 45px;
   @include box_sizing;
 }
+  
 /* forms 
 
 input, textarea, select, .uneditable-input {
@@ -176,3 +177,6 @@ input {
   }
 }
 
+.login .btn{
+  margin-bottom: 15px;
+}

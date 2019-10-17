@@ -1,14 +1,18 @@
-<%= link_to 'Back', models_path, class: 'btn btn-primary' %>
-<div class="row">
-  <div class="col-md-4 offset-md-4">
-    <%= form_for(@model, class: "form-group input-group") do |f| %>
+<%= link_to "Back", models_path, class: "btn btn-primary" %>
+<div class="row justify-content-center">
+  <div class="col-md-4">
+    <%= form_for @model do |f| %>
       <%= render partial: "shared/error_messages", locals: {var: @model} %>
 
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control', required: true %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control", required: true %>
+      </div>
 
-      <%= f.label 'Brand' %>
-      <%= f.collection_select :brand_id, Brand.all, :id, :name, include_blank: "Please Select a Brand", required: true, class: 'form-control' %>
+      <div class="form-group ">
+        <%= f.label "Brand" %>
+        <%= f.collection_select :brand_id, Brand.all, :id, :name, include_blank: "Please Select a Brand", required: true, class: "form-control" %>
+      </div>
 
       <%= f.submit var_msg , class: "btn btn-success" %>
     <% end %>

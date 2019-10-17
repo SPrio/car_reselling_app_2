@@ -1,7 +1,7 @@
 <div class="row">
 <div class="col-sm-9"></div>
 <div class="col-sm-2">
-<%= link_to '/'+var_name+'/new', class: 'float btn' do %>
+<%= link_to "/"+var_name+"/new", class: "float btn" do %>
   <div class="my-float"><%= fa_icon "plus" %>&nbsp;<span>Add New <%= var_name.humanize.capitalize %></span></div>
 <% end %>
 </div>
@@ -27,8 +27,8 @@
           <% if var_name == "models" %>
             <td><%= get_brand_name(each_one) %></td>
           <% end %>
-          <td><%= link_to 'Edit', '/'+var_name+'/'+each_one.id.to_s+'/edit', class: "btn btn-primary" %></td>
-          <td><%= link_to "Destroy", '/'+var_name+'/'+each_one.id.to_s, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %></td>
+          <td><%= link_to "Edit", "/"+var_name+"/"+each_one.id.to_s+"/edit", class: "btn btn-primary" %></td>
+          <td><%= link_to "Destroy", "/"+var_name+"/"+each_one.id.to_s, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %></td>
         </tr>
       <% end %>
     </tbody>

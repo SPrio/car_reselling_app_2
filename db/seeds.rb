@@ -54,7 +54,7 @@ User.create(name: "Admin", email: "administrator@mail.com", password: "administr
 #seller and buyer
 User.create(name: "Rio", email: "rio@mail.com", password: "qwerty", password_confirmation: "qwerty", activated: true, activated_at: Time.now, number: "9547276700", category: "Seller")
 User.create(name: "Flash", email: "flash@mail.com", password: "qwerty", password_confirmation: "qwerty", activated: true, activated_at: Time.now, number: "9547276700", category: "Buyer")
-User.create(name: "Sup", email: "sup@mail.com", password: "qwerty", password_confirmation: "qwerty", activated: true, activated_at: Time.now, number: "9547276700", category: "Seller")
+User.create(name: "Supp", email: "supp@mail.com", password: "qwerty", password_confirmation: "qwerty", activated: true, activated_at: Time.now, number: "9547276700", category: "Seller")
 User.create(name: "matt", email: "matt@mail.com", password: "qwerty", password_confirmation: "qwerty", activated: true, activated_at: Time.now, number: "9547276700", category: "Buyer")
 
 

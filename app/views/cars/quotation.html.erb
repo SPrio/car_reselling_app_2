@@ -1,15 +1,15 @@
 <h1>Show Quotation</h1>
 <% if current_user.category == "Seller" %>
-	<%= link_to "Back", user_car_path(current_user, @car) , class: 'btn btn-secondary back-button' %>
+	<%= link_to "Back", user_car_path(current_user, @car) , class: "btn btn-secondary back-button" %>
 <% else %>
-	<%= link_to "Back", view_user_car_path(current_user, @car) , class: 'btn btn-secondary back-button' %>
+	<%= link_to "Back", view_user_car_path(current_user, @car) , class: "btn btn-secondary back-button" %>
 <% end %>
 <h3 class="text-center">Enter your phone number to show the car quotation</h3>
 <br>
 
 <%= form_tag({controller: "cars", action: "quotation"}, method: :get, class: "col-md-4 offset-md-4 form-group") do %>
   <p>
-    <%= text_field_tag :number, params[:number], placeholder: "Enter your number", class: 'form-control' %>
+    <%= text_field_tag :number, params[:number], placeholder: "Enter your number", class: "form-control" %>
   <%= submit_tag "Show quotation", class: "btn btn-success"%>
   </p>
 <% end %>

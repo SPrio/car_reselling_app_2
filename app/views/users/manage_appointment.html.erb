@@ -1,5 +1,5 @@
 <h1>Manage appointment </h1>
-<%= link_to 'Back', my_appointments_user_path(current_user), class: 'btn btn-primary' %>
+<%= link_to "Back", my_appointments_user_path(current_user), class: "btn btn-primary" %>
 <table class="table table-bordered ap-table text-center">
   <thead class="thead-light">
     <tr>
@@ -8,7 +8,7 @@
       <th scope="col">Date</th>
       <th scope="col">ID of requested User</th>
       <th scope="col">Status</th>
-      <% unless @ap.status == 'rejected' or @ap.status == 'sold out'%>
+      <% unless @ap.status == "rejected" or @ap.status == "sold out"%>
         <th scope="col" colspan="4">Options</th>
       <% end %>
     </tr>
@@ -20,10 +20,10 @@
       <td><%= @ap.date  ? @ap.date : "not scheduled yet"%></td>
       <td><%= @ap.who_user_id %></td>
       <td><%= @ap.status %></td>
-      <% unless @ap.status == 'rejected' or @ap.status == 'sold out'%>
-        <td><%= link_to 'Schedule Date', schedule_appointment_user_path(@ap.id), class: "btn btn-primary" %></td>
-        <td><%= link_to 'Accept Buy Request', accept_appointment_user_path(id: @ap.id), class: "btn btn-success" %></td>
-        <td><%= link_to 'Reject', reject_appointment_user_path(id: @ap.id), class: "btn btn-danger" %></td>
+      <% unless @ap.status == "rejected" or @ap.status == "sold out"%>
+        <td><%= link_to "Schedule Date", schedule_appointment_user_path(@ap.id), class: "btn btn-primary" %></td>
+        <td><%= link_to "Accept Buy Request", accept_appointment_user_path(id: @ap.id), class: "btn btn-success" %></td>
+        <td><%= link_to "Reject", reject_appointment_user_path(id: @ap.id), class: "btn btn-danger" %></td>
       <% end %>
     </tr>
   </tbody>

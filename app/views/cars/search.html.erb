@@ -118,12 +118,12 @@
         <ul class="list-group">  
           <% if Year.last %>
             <% (((Year.last.start.to_i)..(Year.last.end.to_i)).to_a).each do |registration_year| %> 
-          <% end %>        
             <li class="list-group-item">
               <%= check_box_tag "registration_year[]", registration_year, @params_registration_year&.include?(registration_year) ? true : false , class: "selectable" %>
               <%= registration_year %>
             </li>
           <% end %>
+          <% end %> 
         </ul>
       </li> 
     </ul>

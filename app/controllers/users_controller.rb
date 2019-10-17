@@ -79,7 +79,7 @@ class UsersController < ApplicationController
     @ap.status = "approved"
     if @ap.save and @ap.date
       flash[:success] = "Appointment Scheduled at #{@ap.date}"
-      redirect_to my_appointments_user_path(current_user)
+      redirect_to manage_appointment_user_path(a_id: @ap.id)
     else
       flash[:danger] = "Failed to fix appointment"
       render 'schedule_appointment'
