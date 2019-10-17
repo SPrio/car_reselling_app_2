@@ -6,7 +6,7 @@ class Car < ApplicationRecord
 
   belongs_to :user
   has_many :appointments, dependent: :destroy  
-  validates :year , presence: true, inclusion: { in: (Year.first.start..Year.first.end).to_a }
+  validates :year , presence: true, inclusion: { in: (Year.last.start..Year.last.end).to_a } if Year.last
   validates :brand , presence: true, inclusion: { in: Brand.all.pluck(:name) }
   validates :model , presence: true, inclusion: { in: Model.all.pluck(:name) }
   validates :city , presence: true, inclusion: { in: City.all.pluck(:name) }
@@ -93,10 +93,6 @@ class Car < ApplicationRecord
   filter_query[2][:bool][:should].shift
 
   search_query[:query][:bool].store(:filter, filter_query)
-
-  #only filter
-
-  #search_query[:query][:bool].store(:filter, filter_query) unless city.p?
   
   print "search query ", search_query
 

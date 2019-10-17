@@ -7,7 +7,7 @@ class AdminController < ApplicationController
 
   def all_appointments
     @admin = User.where(admin: true)[0]
-    @appointments = Appointment.where(whom_user_id: @admin.id)   
+    @appointments = Appointment.where(whom_user_id: @admin.id)
   end
 
   def manage_appointment
@@ -57,13 +57,13 @@ class AdminController < ApplicationController
       @car.verified = true
       if @ap.save and @car.save 
         flash[:success] = "Car has been accepted"
-        redirect_to admin_all_appointments_path
+        redirect_to admin_manage_appointment_path(id: @ap.whom_user_id)
       else
         flash[:warning] = "retry"
         render 'manage_appointment'
       end
     else
-      flash[:warning] = "Scheduled is not yet fixed"
+      flash[:warning] = "Inspection Schedule is not yet fixed"
       render 'manage_appointment'
     end
   end

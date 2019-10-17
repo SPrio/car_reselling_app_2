@@ -12,7 +12,14 @@
               <li class="nav-item"><%= link_to 'Seller Dashboard', user_cars_path(current_user), class: "nav-link" %></li>
               <% else %>
               <li class="nav-item"><%= link_to 'Buyer Dashboard', cars_search_path, class: "nav-link" %></li>
-            <% end %>                     
+            <% end %>      
+            <li class="nav-item dropdown" data-behavior="notifications">
+              <a class="nav-link dropdown-toggle " href=# data-behavior="notifications-link" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= fa_icon 'bell' %><span data-behavior="unread-count" class="badge badge-light"></span>             
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1" data-behavior="notification-items">
+              </div>
+            </li>               
             <li class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 My Account

@@ -41,7 +41,11 @@
     <tr>
       <td>Request an appointment with the Seller to buy the car.</td>
       <td class="text-center">
-        <%= link_to 'Buy car', buy_request_user_car_path(id: @car, user_id: current_user), class: "btn btn-info" %>
+        <% if !@requested %>
+          <%= link_to 'Buy car', buy_request_user_car_path(id: @car, user_id: current_user), class: "btn btn-info" %> 
+        <% else %>
+          <button type="button" class="btn btn-outline-info" disabled>Seller Appointment Requested</button>
+        <% end %>
       </td>
     </tr>
   </tbody>

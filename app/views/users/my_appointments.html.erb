@@ -1,85 +1,87 @@
 <h1>My Appointments</h1>
-
-
 <% if @user.category == "Seller" %>
-<%= link_to 'apply for new appointment', user_cars_path(current_user), class: 'btn btn-secondary back-button'%>
-<h3 class="">Appointments with Admin</h3>
-<table class="table table-bordered">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Car ID</th>
-      <th scope="col">Date</th>
-      <th scope="col">with whom</th>
-      <th scope="col">Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @admin_appointments.each do |admin|%>
+  <div class= "row">
+    <div class="offset-md-8 col-2">
+      <%= link_to 'Apply for New appointment', user_cars_path(current_user), class: 'btn btn-success btn-lg back-button'%>
+    </div>
+  </div>
+  <h3 class="">Appointments with Admin</h3>
+  <table class="table table-bordered">
+    <thead class="thead-light">
       <tr>
-        <td><%= admin.id %></td>
-        <td><%= admin.car_id %></td>
-        <td><%= admin.date %></td>
-        <td><%= User.find(admin.whom_user_id).name %></td>
-        <td><%= admin.status %></td>
+        <th scope="col">ID</th>
+        <th scope="col">Car ID</th>
+        <th scope="col">Date</th>
+        <th scope="col">with whom</th>
+        <th scope="col">Status</th>
       </tr>
-    <% end %>
-  </tbody>
-<table>
+    </thead>
+    <tbody>
+      <% @admin_appointments.each do |admin|%>
+        <tr>
+          <td><%= admin.id %></td>
+          <td><%= admin.car_id %></td>
+          <td><%= admin.date %></td>
+          <td><%= User.find(admin.whom_user_id).name %></td>
+          <td><%= admin.status %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
   <br>
   <h3>Appointments with Buyers</h3>
   <table class="table table-bordered">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Car ID</th>
-      <th scope="col">Date</th>
-      <th scope="col">with whom</th>
-      <th scope="col">Status</th>
-      <th scope="col">Options</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @buyer_appointments.each do |b|%>
+    <thead class="thead-light">
       <tr>
-        <td><%= b[0].id %></td>
-        <td><%= b[0].car_id %></td>
-        <td><%= b[0].date %></td>
-        <td><%= User.find(b[0].whom_user_id).name %></td>
-        <td><%= b[0].status %></td>
-        <td><%= link_to "manage", manage_appointment_user_path(id: b[0].whom_user_id), class: "btn btn-info" %></td>
+        <th scope="col">ID</th>
+        <th scope="col">Car ID</th>
+        <th scope="col">Date</th>
+        <th scope="col">with whom</th>
+        <th scope="col">Status</th>
+        <th scope="col">Options</th>
       </tr>
-    <% end %>
-  </tbody>
-<table>
-
-
+    </thead>
+    <tbody>
+      <% @buyer_appointments.each do |b|%>
+        <tr>
+          <td><%= b.id %></td>
+          <td><%= b.car_id %></td>
+          <td><%= b.date %></td>
+          <td><%= User.find(b.whom_user_id).name %></td>
+          <td><%= b.status %></td>
+          <td><%= link_to "manage", manage_appointment_user_path(a_id: b.id), class: "btn btn-info" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% else %>
-<%= link_to 'apply for new appointment', cars_search_path, class: 'btn btn-secondary back-button'%>
-  <h3 class="">Appointments with Seller</h3>
-<br>
-<table class="table table-bordered">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Car ID</th>
-      <th scope="col">Date</th>
-      <th scope="col">with whom</th>
-      <th scope="col">Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @seller_appointments.each do |sa|%>
+  <div class= "row">
+    <div class="offset-md-8 col-3">
+      <%= link_to 'Apply for New appointment', cars_search_path, class: 'btn btn-success btn-lg back-button'%>
+    </div>
+  </div>
+    <h3 class="">Appointments with Seller</h3>
+  <br>
+  <table class="table table-bordered">
+    <thead class="thead-light">
       <tr>
-        <td><%= sa.id %></td>
-        <td><%= sa.car_id %></td>
-        <td><%= sa.date %></td>
-        <td><%= User.find(sa.who_user_id).name %></td>
-        <td><%= sa.status %></td>
+        <th scope="col">ID</th>
+        <th scope="col">Car ID</th>
+        <th scope="col">Date</th>
+        <th scope="col">with whom</th>
+        <th scope="col">Status</th>
       </tr>
-    <% end %>
-  </tbody>
-<table>
-
-   
+    </thead>
+    <tbody>
+      <% @seller_appointments.each do |sa|%>
+        <tr>
+          <td><%= sa.id %></td>
+          <td><%= sa.car_id %></td>
+          <td><%= sa.date %></td>
+          <td><%= User.find(sa.who_user_id).name %></td>
+          <td><%= sa.status %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>

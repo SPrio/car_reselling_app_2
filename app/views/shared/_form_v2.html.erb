@@ -1,7 +1,7 @@
 <%= link_to 'Back', '/'+var_name, class: 'btn btn-primary' %>
 <div class="row">
   <div class="col-md-4 offset-md-4">
-    <%= form_for(var_object, class: "form-group") do |f| %>
+    <%= form_for(var_object) do |f| %>
       <%= render partial: "shared/error_messages", locals: {var: var_object} %>
 
       <% var_model.column_names[1,var_model.column_names.length].each do |col|%>

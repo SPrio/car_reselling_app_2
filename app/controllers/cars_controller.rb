@@ -5,7 +5,7 @@ class CarsController < ApplicationController
   before_action :if_buyer, only: [:view]
   before_action :if_seller, only: [:show, :edit, :destroy]
   before_action :correct_log_in, except: [:search, :detail]
-  before_action :correct_user_car, except: [:buy_request, :index, :show, :view, :search, :detail, :quotation]
+  before_action :correct_user_car, except: [:buy_request, :index, :show, :view, :search, :detail, :quotation, :new, :create]
   
 
   def index
@@ -110,6 +110,11 @@ class CarsController < ApplicationController
 
   def view
     @car = Car.find(params[:id])
+    if Appointment.where(car_id: @car.id, whom_user_id: current_user.id) == []
+      @requested = false
+    else
+      @requested = true
+    end
   end
 
   def buyer_appointment
@@ -130,7 +135,7 @@ class CarsController < ApplicationController
     @buyer = User.find(params[:user_id])
     @appointment = Appointment.new(who_user_id: @car.user_id, whom_user_id: params[:user_id], car_id: params[:id], status: "in process")
     if @appointment.save
-      flash[:success] = "Your Appointment is in process with admin for inspection of car"
+      flash[:success] = "Your Appointment is in process with seller for inspection of car"
     else
       flash[:danger] = "Request failed please retry"
     end

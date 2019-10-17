@@ -48,16 +48,21 @@ class UsersController < ApplicationController
     @admin_appointments = Appointment.where(whom_user_id: @admin.id, who_user_id: params[:id])
     @buyer_appointments = []
     User.where(category: "Buyer").pluck(:id).each do |b_id|
-      @buyer_appointments.append(Appointment.where(who_user_id: @user, whom_user_id: b_id))
+      Appointment.where(who_user_id: @user, whom_user_id: b_id).each do |each_buyer|
+        @buyer_appointments.append(each_buyer)
+      end
     end
-    @buyer_appointments.shift
-    print @buyer_appointments
 
+    @buyer_appointments = Appointment.where(id: @buyer_appointments.map(&:id))
+
+    print @buyer_appointments
+    
     @seller_appointments = Appointment.where(whom_user_id: params[:id])
   end
 
   def manage_appointment
-    @ap =Appointment.find(params[:id])
+    @ap =Appointment.find(params[:a_id])
+    
   end
 
   def schedule_appointment
@@ -95,14 +100,28 @@ class UsersController < ApplicationController
 
   def accept_appointment
     @ap = Appointment.find(params[:id])
-    @ap.status = "accepted"
-    @car = Car.find(@ap.car_id)
-    @car.sold = true
-    if @ap.save and @car.save 
-      flash[:success] = "The Car has been sold"
-      redirect_to my_appointments_user_path(current_user)
+    unless @ap.date.nil?
+      @ap.status = "sold out"
+      @car = Car.find(@ap.car_id)
+      @car.sold = true
+      
+      buyer_ids = User.where(category: "Buyer").pluck(:id)
+      buyer_ids.delete(@ap.whom_user_id)
+      @rejected_ap = Appointment.where(car_id: @car.id, who_user_id: @ap.who_user_id, whom_user_id: buyer_ids)
+      @rejected_ap.each do |rej_ap|
+        rej_ap.status = "rejected"
+        rej_ap.save
+      end
+
+      if @ap.save and @car.save 
+        flash[:success] = "The Car has been sold"
+        redirect_to my_appointments_user_path(current_user)
+      else
+        flash[:warning] = "Please retry again"
+        render 'manage_appointment'
+      end
     else
-      flash[:warning] = "retry"
+      flash[:warning] = "Inspection is not yet Scheduled"
       render 'manage_appointment'
     end
   end

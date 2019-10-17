@@ -94,7 +94,7 @@ $gray-medium-light: #eaeaea;
   margin-top: 45px;
   @include box_sizing;
 }
-/* forms */
+/* forms 
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
@@ -106,6 +106,7 @@ input, textarea, select, .uneditable-input {
 input {
   height: auto !important;
 }
+*/
 #error_details {
   color: red;
   ul {

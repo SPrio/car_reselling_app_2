@@ -22,8 +22,8 @@
         <th scope="col">City</th>
         <th scope="col">Year</th>
         <th scope="col">Condition</th>
-        
         <th scope="col">Verified</th>
+        <th scope="col">Sold Out</th>
         <th scope="col" colspan="4">Options</th>
       </tr>
     </thead>
@@ -39,8 +39,8 @@
           <td><%= each_one.city %></td> 
           <td><%= each_one.year %></td> 
           <td><%= each_one.condition %></td> 
-          
-          <td><%= each_one.verified %></td> 
+          <td><%= each_one.verified %></td>
+          <td><%= each_one.sold %></td> 
           <td><%= link_to 'View Details', user_car_path(user_id: current_user, id: each_one) , class: "btn btn-info" %></td>
         </tr>
       <% end %>

@@ -17,6 +17,7 @@ class User < ApplicationRecord
   
   has_many :cars, dependent: :destroy  
 
+  has_many :notifications, foreign_key: :recipient_id
   class << self
     # Returns the hash digest of the given string.
     def digest(string)
@@ -41,6 +42,7 @@ class User < ApplicationRecord
     # Creates and assigns the activation token and digest.
     def create_activation_digest
       self.activation_token  = User.new_token
+      print("actication digest is accessing--------------------------")
       self.activation_digest = User.digest(activation_token)
     end
 end

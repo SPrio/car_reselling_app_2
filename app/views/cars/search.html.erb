@@ -1,17 +1,19 @@
 <h1>Search for cars using the below filters</h1>
 <p>You can search your dream car as per your own preferences</p>
 <div class="search-page">
-<%= form_tag({controller: "cars", action: 'search'}, method: :get) do %>
+
+<%= form_tag({controller: "cars", action: "search"}, method: :get) do %>
 <div class="form-group">  
-  <div class="input-group ">  
-    <%= text_field_tag :search, params[:search], class: "form-control",placeholder: "Search for Cars" %>
-    <%= button_tag(type: 'submit', class: 'btn btn-primary btn-lg') do %>
+  <div class="input-group">  
+    <%= text_field_tag :search, params[:search], class: "form-control mr-sm-2",placeholder: "Search for Cars" %>
+    <%= button_tag(type: "submit", class: "btn btn-primary btn-lg search-btn") do %>
       <%= fa_icon "search"%>
     <% end %>
   </div>
 </div>
-<%= submit_tag 'Apply filters', class: 'btn btn-success btn-md' %>
-<%= link_to 'Clear filters', cars_search_path, class: 'btn btn-danger btn-md' %>
+
+<%= submit_tag "Apply filters", class: "btn btn-success btn-md" %>
+<%= link_to "Clear filters", cars_search_path, class: "btn btn-danger btn-md" %>
 
 <p></p>
 <div class="row">
@@ -57,7 +59,7 @@
         <ul class="list-group">
           <% State.all.each do |registration_state| %>     
             <li class="list-group-item">
-            <%= check_box_tag "registration_state[]", registration_state.name, @params_registration_state&.include?(registration_state.name) ? true : false, class: 'selectable' %>
+            <%= check_box_tag "registration_state[]", registration_state.name, @params_registration_state&.include?(registration_state.name) ? true : false, class: "selectable" %>
             <%= registration_state.name %></li>
           <% end %>
         </ul>
@@ -66,7 +68,7 @@
         <ul class="list-group">
           <% City.all.each do |city| %>
             <li class="list-group-item">
-              <%= check_box_tag "city[]", city.name, @params_city&.include?(city.name) ? true : false, class: 'selectable' %>
+              <%= check_box_tag "city[]", city.name, @params_city&.include?(city.name) ? true : false, class: "selectable" %>
               <%= city.name %>
             </li>
           <% end %>
@@ -76,7 +78,7 @@
         <ul class="list-group">
           <% Brand.all.each do |brand| %>
             <li class="list-group-item">
-              <%= check_box_tag "brand[]", brand.name,@params_brand&.include?(brand.name) ? true : false, class: 'selectable' %>
+              <%= check_box_tag "brand[]", brand.name,@params_brand&.include?(brand.name) ? true : false, class: "selectable" %>
               <%= brand.name %>
             </li>     
           <% end %>
@@ -86,7 +88,7 @@
         <ul class="list-group">  
           <% Model.all.each do |model| %>    
             <li class="list-group-item">
-              <%= check_box_tag "model[]", model.name, @params_model&.include?(model.name) ? true : false, class: 'selectable' %>
+              <%= check_box_tag "model[]", model.name, @params_model&.include?(model.name) ? true : false, class: "selectable" %>
               <%= model.name %>
             </li> 
           <% end %>
@@ -96,7 +98,7 @@
         <ul class="list-group">  
           <% Variant.all.each do |variant| %> 
             <li class="list-group-item">
-              <%= check_box_tag "variant[]", variant.name, @params_variant&.include?(variant.name) ? true : false, class: 'selectable' %>
+              <%= check_box_tag "variant[]", variant.name, @params_variant&.include?(variant.name) ? true : false, class: "selectable" %>
               <%= variant.name %>
             </li>
           <% end %>
@@ -106,7 +108,7 @@
         <ul class="list-group">
           <% KilometerRange.all.each do |kilometer_driven| %>       
             <li class="list-group-item">
-              <%= check_box_tag "kilometer_driven[]", kilometer_driven.name, @params_kilometer_driven&.include?(kilometer_driven.name) ? true : false, class: 'selectable' %>
+              <%= check_box_tag "kilometer_driven[]", kilometer_driven.name, @params_kilometer_driven&.include?(kilometer_driven.name) ? true : false, class: "selectable" %>
               <%= kilometer_driven.name %>
             </li>
           <% end %>
@@ -114,9 +116,11 @@
       </li>
       <li class="list-group-item"><span class="">Car Registration Year</span>
         <ul class="list-group">  
-          <% (((Year.last.start.to_i)..(Year.last.end.to_i)).to_a).each do |registration_year| %>        
+          <% if Year.last %>
+            <% (((Year.last.start.to_i)..(Year.last.end.to_i)).to_a).each do |registration_year| %> 
+          <% end %>        
             <li class="list-group-item">
-              <%= check_box_tag "registration_year[]", registration_year, @params_registration_year&.include?(registration_year) ? true : false , class: 'selectable' %>
+              <%= check_box_tag "registration_year[]", registration_year, @params_registration_year&.include?(registration_year) ? true : false , class: "selectable" %>
               <%= registration_year %>
             </li>
           <% end %>
@@ -155,7 +159,7 @@
             <td scope="row"><%= car.city %></td>
             <td scope="row"><%= car.state %></td>
             <td scope="row"><%= car.condition %></td>
-            <td scope="row" ><%= link_to 'View Details', cars_detail_path(id: car) , class: "btn btn-outline-info" %></td>
+            <td scope="row" ><%= link_to "View Details", cars_detail_path(id: car) , class: "btn btn-outline-info" %></td>
           </tr>
         <% end %>
       </table>  
