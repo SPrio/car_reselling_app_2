@@ -6,7 +6,7 @@ class CarsController < ApplicationController
   before_action :if_seller, only: [:show, :edit, :destroy]
   before_action :correct_log_in, except: [:search, :detail]
   before_action :correct_user_car, except: [:buy_request, :index, :show, :view, :search, :detail, :quotation, :new, :create]
-  
+  before_action :form_data , only: [:new, :create, :edit, :update]
 
   def index
     @cars = Car.where(user_id: params[:user_id])
@@ -33,7 +33,7 @@ class CarsController < ApplicationController
       redirect_to user_cars_path
     else
       flash[:danger] = "Failed to add, try again"
-      render 'new'
+      render "new"
     end
   end
 
@@ -67,9 +67,9 @@ class CarsController < ApplicationController
       @price = Condition.where(condition: @car.condition).pluck(:cost)[0]
     elsif params[:number]
       flash[:warning] = "The phone number is different from the saved one"
-      render 'quotation'
+      render "quotation"
     else
-      render 'quotation'
+      render "quotation"
     end
   end
 
@@ -80,7 +80,7 @@ class CarsController < ApplicationController
     @appointment = Appointment.new(who_user_id: @seller.id, whom_user_id: @admin.id, car_id: @car.id, status: "in process")
     
     if @appointment.save
-      Notification.create(recipient: @seller, actor: @admin, action: "Your Appointment for car verification is in process", notifiable: @appointment)
+      Notification.create(recipient: @seller, actor: @admin, action: "Your Appointment for verification of car ID #{@car.id} is in process", notifiable: @appointment)
       flash[:success] = "Your Appointment is in process with admin for inspection of car"
     else
       flash[:danger] = "Request failed please retry"
@@ -89,7 +89,7 @@ class CarsController < ApplicationController
   end
 
   def search
-    #@cars = Car.where(status: 'verified')
+    #@cars = Car.where(status: "verified")
     if params[:search].nil? 
       @cars = Car.where(verified: true, sold: false)
     else
@@ -102,7 +102,7 @@ class CarsController < ApplicationController
       @params_kilometer_driven = params[:kilometer_driven]
       @cars = Car.filtered_search(params[:search],params[:city],params[:brand],params[:model],params[:registration_year],params[:variant],params[:registration_state],params[:kilometer_driven])
       #@cars = @cars.where(status: "verified")
-      render 'search'
+      render "search"
     end
   end
 
@@ -128,7 +128,7 @@ class CarsController < ApplicationController
       redirect_to admin_manage_appointment_path(id: @ap.id)
     else
       flash[:danger] = "Failed to fix appointment"
-      render 'schedule_appointment'
+      render "schedule_appointment"
     end
   end
   
@@ -137,6 +137,8 @@ class CarsController < ApplicationController
     @buyer = User.find(params[:user_id])
     @appointment = Appointment.new(who_user_id: @car.user_id, whom_user_id: params[:user_id], car_id: params[:id], status: "in process")
     if @appointment.save
+      Notification.create(recipient: User.find(@appointment.whom_user_id), actor: User.find(@appointment.who_user_id), action: "Your Appointment with Seller for inspection of car ID #{@appointment.car_id} is in process", notifiable: @appointment)
+      Notification.create(recipient: User.find(@appointment.who_user_id), actor: User.find(@appointment.whom_user_id), action: "New Appointment Request with Buyer for inspection of car ID #{@appointment.car_id} has come", notifiable: @appointment)
       flash[:success] = "Your Appointment is in process with seller for inspection of car"
     else
       flash[:danger] = "Request failed please retry"
@@ -145,8 +147,13 @@ class CarsController < ApplicationController
   end
   
   private
+  
   def cars_params
     params.require(:car).permit(:brand, :model, :variant, :kilometer_range, :city, :state, :condition, :year)
+  end
+
+  def form_data 
+    @brands = Brand.joins(:models).distinct
   end
 
 end

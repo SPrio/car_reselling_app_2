@@ -19,7 +19,7 @@ class StatesController < ApplicationController
       redirect_to states_path
     else
       flash[:danger] = "Failed to add, try again"
-      render 'new'
+      render "new"
     end
   end
 

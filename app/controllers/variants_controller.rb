@@ -19,7 +19,7 @@ class VariantsController < ApplicationController
       redirect_to variants_path
     else
       flash[:danger] = "Failed to add, try again"
-      render 'new'
+      render "new"
     end
   end
 
@@ -45,4 +45,5 @@ class VariantsController < ApplicationController
   def get_variant
     @variant = Variant.find(params[:id])
   end
+  
 end

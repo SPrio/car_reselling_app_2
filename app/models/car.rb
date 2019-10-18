@@ -16,7 +16,6 @@ class Car < ApplicationRecord
   validates :variant , presence: true, inclusion: { in: Variant.all.pluck(:name) }
   validates :user_id , presence: true
 
-
   def self.filtered_search(search, city, brand, model, registration_year, variant, registration_state, kilometer_driven)
   
   search_query = {
@@ -100,4 +99,5 @@ class Car < ApplicationRecord
     search_query
   )
   end
+
 end

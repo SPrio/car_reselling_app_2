@@ -2,6 +2,7 @@ var Notifications;
 
 Notifications = class Notifications {
   constructor() {
+    console.log("c1")
     this.handleClick = this.handleClick.bind(this);
     this.handleSuccess = this.handleSuccess.bind(this);
     this.notifications = $("[data-behavior='notifications']");

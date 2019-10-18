@@ -19,7 +19,7 @@ class CitiesController < ApplicationController
       redirect_to cities_path
     else
       flash[:danger] = "Failed to add, try again"
-      render 'new'
+      render "new"
     end
   end
 
@@ -45,4 +45,5 @@ class CitiesController < ApplicationController
   def get_city
     @city = City.find(params[:id])
   end
+  
 end

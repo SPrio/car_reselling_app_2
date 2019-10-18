@@ -1,11 +1,6 @@
-<div class="row">
-<div class="col-sm-9"></div>
-<div class="col-sm-2">
-<%= link_to new_year_path, class: "float btn" do %>
-  <div class="my-float"><%= fa_icon "plus" %>&nbsp;<span>Add New Year Range</span></div>
+<%= link_to new_year_path, class: "btn btn-success btn-lg new-add" do %>
+  <%= fa_icon "plus" %>&nbsp;<span>Add New Year Range</span>
 <% end %>
-</div>
-</div>
 <% unless @years == [] %>
   <h1>List of Year Ranges</h1>
   <table class="table table-bordered">

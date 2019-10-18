@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
         if user.admin
           redirect_to admin_dashboard_path
         else
-          # Log the user in and redirect to the user's show page
+          # Log the user in and redirect to the user"s show page
           if user.category == "Buyer"
             redirect_to cars_search_path
           else
@@ -24,8 +24,8 @@ class SessionsController < ApplicationController
         redirect_to root_url
       end
     else
-      flash.now[:danger] = 'Invalid email/password combination'# Create an error message.
-      render 'new'
+      flash.now[:danger] = "Invalid email/password combination"# Create an error message.
+      render "new"
     end
   end
 

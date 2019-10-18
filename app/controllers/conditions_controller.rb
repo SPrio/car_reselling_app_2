@@ -19,7 +19,7 @@ class ConditionsController < ApplicationController
       redirect_to conditions_path
     else
       flash[:danger] = "Failed to add, try again"
-      render 'new'
+      render "new"
     end
   end
 
@@ -50,4 +50,5 @@ class ConditionsController < ApplicationController
   def conditions_params
     params.require(:condition).permit(:condition, :cost)
   end
+  
 end

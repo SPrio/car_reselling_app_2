@@ -1,8 +1,6 @@
 <h1>Search for cars using the below filters</h1>
 <p>You can search your dream car as per your own preferences</p>
-<div class="search-page">
-
-<%= form_tag({controller: "cars", action: "search"}, method: :get) do %>
+<%= form_tag({ controller: "cars", action: "search" }, method: :get ) do %>
 <div class="form-group">  
   <div class="input-group">  
     <%= text_field_tag :search, params[:search], class: "form-control mr-sm-2",placeholder: "Search for Cars" %>
@@ -15,9 +13,10 @@
 <%= submit_tag "Apply filters", class: "btn btn-success btn-md" %>
 <%= link_to "Clear filters", cars_search_path, class: "btn btn-danger btn-md" %>
 
-<p></p>
+<br>
 <div class="row">
   <div class="col-3 filters">
+  <br>
     <h5 class="text-dark">Filters</h5>
     <% unless @params_city.blank? %>
       <% @params_city.each do |c| %>
@@ -159,7 +158,7 @@
             <td scope="row"><%= car.city %></td>
             <td scope="row"><%= car.state %></td>
             <td scope="row"><%= car.condition %></td>
-            <td scope="row" ><%= link_to "View Details", cars_detail_path(id: car) , class: "btn btn-outline-info" %></td>
+            <td scope="row" ><%= link_to "View Details", cars_detail_path(id: car.id) , class: "btn btn-outline-info" %></td>
           </tr>
         <% end %>
       </table>  

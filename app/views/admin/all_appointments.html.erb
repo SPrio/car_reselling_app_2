@@ -12,14 +12,14 @@
       </tr>
     </thead>
     <tbody>
-      <% @appointments.each do |admin|%>
+      <% @appointments.each do |admin| %>
         <tr>
           <td><%= admin.id %></td>
           <td><%= admin.car_id %></td>
-          <td><%= admin.date ? admin.date : "not scheduled yet"%></td>
+          <td><%= admin.date ? admin.date : "not scheduled yet" %></td>
           <td><%= admin.who_user_id %></td>
           <td><%= admin.status %></td>
-          <td><%= link_to "manage", admin_manage_appointment_path(id: admin.id), class: "btn btn-secondary" %></td>
+          <td><%= link_to "manage", admin_manage_appointment_path( id: admin.id ), class: "btn btn-secondary" %></td>
         </tr>
       <% end %>
     </tbody>

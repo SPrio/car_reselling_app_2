@@ -2,7 +2,7 @@
 <div class="row justify-content-center">
   <div class="col-md-4">
     <%= form_for @model do |f| %>
-      <%= render partial: "shared/error_messages", locals: {var: @model} %>
+      <%= render partial: "shared/error_messages", locals: { var: @model } %>
 
       <div class="form-group">
         <%= f.label :name %>
@@ -11,7 +11,7 @@
 
       <div class="form-group ">
         <%= f.label "Brand" %>
-        <%= f.collection_select :brand_id, Brand.all, :id, :name, include_blank: "Please Select a Brand", required: true, class: "form-control" %>
+        <%= f.collection_select :brand_id, Brand.all, :id, :name, { prompt: "Please Select a Brand" }, { required: true, class: "form-control" } %>
       </div>
 
       <%= f.submit var_msg , class: "btn btn-success" %>

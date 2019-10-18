@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     redirect_to user_cars_path(current_user)
   end
+
   def new
     if logged_in?
       flash[:warning] = "You are already Logged In, Please log out and then sign up"
@@ -15,6 +16,7 @@ class UsersController < ApplicationController
       @user = User.new
     end
   end
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -22,7 +24,7 @@ class UsersController < ApplicationController
       flash[:info] = "Please check your email to activate your account."
       redirect_to root_url
     else
-      render 'new'
+      render "new"
     end
   end
 
@@ -37,7 +39,7 @@ class UsersController < ApplicationController
       flash[:success] = "Profile updated"
       redirect_to @user
     else
-      render 'edit'
+      render "edit"
     end
   end
 
@@ -54,20 +56,18 @@ class UsersController < ApplicationController
     end
 
     @buyer_appointments = Appointment.where(id: @buyer_appointments.map(&:id))
-
     print @buyer_appointments
     
     @seller_appointments = Appointment.where(whom_user_id: params[:id])
   end
 
   def manage_appointment
-    @ap =Appointment.find(params[:a_id])
-    
+    @ap =Appointment.find(params[:a_id])  
   end
 
   def schedule_appointment
     @ap = Appointment.find(params[:id])
-    if @ap.status == 'rejected'
+    if @ap.status == "rejected"
       flash[:warning] = "This appointment has been rejected"
       redirect_to my_appointments_user_path(current_user)
     end
@@ -78,23 +78,27 @@ class UsersController < ApplicationController
     @ap.date = params[:appointment][:date]
     @ap.status = "approved"
     if @ap.save and @ap.date
+      Notification.create(recipient: User.find(@ap.whom_user_id), actor: User.find(@ap.who_user_id), action: "Your Appointment with Seller for inspection of car ID #{@ap.car_id} is in approved", notifiable: @ap)
+      Notification.create(recipient: User.find(@ap.whom_user_id), actor: User.find(@ap.who_user_id), action: "Your Appointment with Seller for inspection of car ID #{@ap.car_id} is scheduled at #{@ap.date}", notifiable: @ap)
       flash[:success] = "Appointment Scheduled at #{@ap.date}"
       redirect_to manage_appointment_user_path(a_id: @ap.id)
     else
       flash[:danger] = "Failed to fix appointment"
-      render 'schedule_appointment'
+      render "schedule_appointment"
     end
   end
+
   def reject_appointment
     @ap = Appointment.find(params[:id])
     #@ap.destroy
-    @ap.status = 'rejected'
+    @ap.status = "rejected"
     if @ap.save
+      Notification.create(recipient: User.find(@ap.whom_user_id), actor: User.find(@ap.who_user_id), action: "Your Appointment with Seller for inspection of car ID #{@appointment.car_id} is rejected", notifiable: @ap)
       flash[:success] = "appointment has been rejected"
       redirect_to my_appointments_user_path(current_user)
     else
       flash[:warning] = "retry"
-      render 'manage_appointment'
+      render "manage_appointment"
     end
   end
 
@@ -111,18 +115,22 @@ class UsersController < ApplicationController
       @rejected_ap.each do |rej_ap|
         rej_ap.status = "rejected"
         rej_ap.save
+        Notification.create(recipient: User.find(@rej_ap.whom_user_id), actor: User.find(@rej_ap.who_user_id), action: "Your Appointment with Seller for inspection of car ID #{@rej_app.car_id} is rejected", notifiable: @rej_ap)
       end
 
       if @ap.save and @car.save 
+        Notification.create(recipient: User.find(@ap.whom_user_id), actor: User.find(@ap.who_user_id), action: "Congratulations, Your Buy request for car of ID #{@ap.car_id} is accepted", notifiable: @ap)
+        Notification.create(recipient: User.find(@ap.whom_user_id), actor: User.find(@ap.who_user_id), action: "Congratulations, The car of ID #{@ap.car_id} is now Yours", notifiable: @ap)
+        Notification.create(recipient: User.find(@ap.who_user_id), actor: User.find(@ap.whom_user_id), action: "Your car of ID #{@ap.car_id} has been sold", notifiable: @ap)
         flash[:success] = "The Car has been sold"
         redirect_to my_appointments_user_path(current_user)
       else
         flash[:warning] = "Please retry again"
-        render 'manage_appointment'
+        render "manage_appointment"
       end
     else
       flash[:warning] = "Inspection is not yet Scheduled"
-      render 'manage_appointment'
+      render "manage_appointment"
     end
   end
 
@@ -132,16 +140,20 @@ class UsersController < ApplicationController
 
   def appointment_status
     if params[:status].blank?
-      @appointment = nil
+      @appointment = []
     else
-      @appointment ? Appointment.find(params[:status]) : nil
+      if (Appointment.pluck(:id)).include?params[:status].to_i
+        @appointment = Appointment.find(params[:status])
+      else
+        @appointment = []
+      end
     end
   end
 
   private
 
-    def user_params
-      params.require(:user).permit(:name, :email, :password,:password_confirmation, :number, :category)
-    end
+  def user_params
+    params.require(:user).permit(:name, :email, :password,:password_confirmation, :number, :category)
+  end
 
 end

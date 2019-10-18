@@ -19,7 +19,7 @@ class KilometerRangesController < ApplicationController
       redirect_to kilometer_ranges_path
     else
       flash[:danger] = "Failed to add, try again"
-      render 'new'
+      render "new"
     end
   end
 
@@ -45,4 +45,5 @@ class KilometerRangesController < ApplicationController
   def get_kilometer_range
     @kilometer_range = KilometerRange.find(params[:id])
   end
+  
 end

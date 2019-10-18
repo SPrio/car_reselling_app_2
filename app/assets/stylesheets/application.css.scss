@@ -164,19 +164,6 @@ input {
   margin-top: 20px;
 }
 
-.search-page{
-  input, textarea, select, .uneditable-input {
-    border: 1px solid #bbb;
-    width: inherit;
-    margin-bottom: 0px;
-  
-  }
-  
-  input {
-    height: auto !important;
-  }
-}
-
 .login .btn{
   margin-bottom: 15px;
 }
@@ -192,4 +179,8 @@ input {
   input {
     height: auto !important;
   }
+}
+
+.new-add{
+  margin-bottom: 20px;
 }

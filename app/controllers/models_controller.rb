@@ -19,7 +19,7 @@ class ModelsController < ApplicationController
       redirect_to models_path
     else
       flash[:danger] = "Failed to add, try again"
-      render 'new'
+      render "new"
     end
   end
 

@@ -15,15 +15,15 @@ class YearsController < ApplicationController
   def create
     @year = Year.new(years_params)
     if @year.start >= @year.end
-      flash[:warning] = "start can't be greater than end year"
-      render 'new'
+      flash[:warning] = "start cant be greater than end year"
+      render "new"
     else
       if @year.save
         flash[:success] = "year range added Succesfully"
         redirect_to years_path
       else
         flash[:danger] = "Failed to add, try again"
-        render 'new'
+        render "new"
       end
     end
   end
@@ -36,11 +36,11 @@ class YearsController < ApplicationController
     tmp_end = @year.end
     if @year.update(years_params)
       if @year.start >= @year.end
-        flash[:warning] = "start can't be greater than end year"
+        flash[:warning] = "start cant be greater than end year"
         @year.start = tmp_start
         @year.end = tmp_end
         @year.save
-        render 'edit'
+        render "edit"
       else
         flash[:success] = "year range has been succesfully Updated"
         redirect_to years_path
@@ -48,8 +48,7 @@ class YearsController < ApplicationController
     else
       flash[:danger] = "Failed to update year"
       render "edit"
-    end
-    
+    end   
   end
 
   def destroy
@@ -61,7 +60,6 @@ class YearsController < ApplicationController
   def get_year
     @year = Year.find(params[:id])
   end
-
 
   private
   def years_params
