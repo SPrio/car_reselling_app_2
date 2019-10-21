@@ -59,4 +59,4 @@ User.create( name: "Buyer2", email: "buyer2@mail.com", password: "password", pas
 
 
 
-Car.__elasticsearch__.create_index!(force: true)
+#Car.__elasticsearch__.create_index!(force: true)

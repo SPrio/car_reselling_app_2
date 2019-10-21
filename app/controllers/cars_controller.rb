@@ -100,8 +100,9 @@ class CarsController < ApplicationController
       @params_variant = params[:variant]
       @params_registration_state = params[:registration_state]
       @params_kilometer_driven = params[:kilometer_driven]
-      @cars = Car.filtered_search(params[:search],params[:city],params[:brand],params[:model],params[:registration_year],params[:variant],params[:registration_state],params[:kilometer_driven])
+      #@cars = Car.filtered_search(params[:search],params[:city],params[:brand],params[:model],params[:registration_year],params[:variant],params[:registration_state],params[:kilometer_driven])
       #@cars = @cars.where(status: "verified")
+      @cars = Car.sql_search(params[:search],params[:city],params[:brand],params[:model],params[:registration_year],params[:variant],params[:registration_state],params[:kilometer_driven])
       render "search"
     end
   end

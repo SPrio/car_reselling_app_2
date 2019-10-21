@@ -75,4 +75,6 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-datetimepicker'
 end
 
-gem 'elasticsearch-model'
+#gem 'elasticsearch-model'
+# Use postgresql as the database for Active Record
+gem 'pg', '>= 0.18', '< 2.0'

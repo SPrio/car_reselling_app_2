@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2019_10_17_045709) do
 
-  create_table "appointments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "appointments", force: :cascade do |t|
     t.datetime "date"
     t.string "status"
     t.integer "who_user_id", null: false
@@ -21,11 +24,11 @@ ActiveRecord::Schema.define(version: 2019_10_17_045709) do
     t.index ["car_id"], name: "index_appointments_on_car_id"
   end
 
-  create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "brands", force: :cascade do |t|
     t.string "name", null: false
   end
 
-  create_table "cars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "cars", force: :cascade do |t|
     t.integer "year", null: false
     t.string "quotation"
     t.string "brand", null: false
@@ -41,26 +44,26 @@ ActiveRecord::Schema.define(version: 2019_10_17_045709) do
     t.index ["user_id"], name: "index_cars_on_user_id"
   end
 
-  create_table "cities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "cities", force: :cascade do |t|
     t.string "name", null: false
   end
 
-  create_table "conditions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "conditions", force: :cascade do |t|
     t.string "condition", null: false
     t.string "cost", null: false
   end
 
-  create_table "kilometer_ranges", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "kilometer_ranges", force: :cascade do |t|
     t.string "name", null: false
   end
 
-  create_table "models", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "models", force: :cascade do |t|
     t.string "name"
     t.bigint "brand_id", null: false
     t.index ["brand_id"], name: "index_models_on_brand_id"
   end
 
-  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "notifications", force: :cascade do |t|
     t.integer "recipient_id"
     t.integer "actor_id"
     t.datetime "read_at"
@@ -71,11 +74,11 @@ ActiveRecord::Schema.define(version: 2019_10_17_045709) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "states", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "states", force: :cascade do |t|
     t.string "name", null: false
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
     t.datetime "created_at", null: false
@@ -90,11 +93,11 @@ ActiveRecord::Schema.define(version: 2019_10_17_045709) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  create_table "variants", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "variants", force: :cascade do |t|
     t.string "name", null: false
   end
 
-  create_table "years", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "years", force: :cascade do |t|
     t.integer "start", null: false
     t.integer "end", null: false
   end
