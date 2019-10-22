@@ -4,6 +4,8 @@ Here you will get the best price for your car. Please sign up as seller to add y
 
 ## Firstly to run the project locally do the following steps: 
 
+* cd <project_name>
+* bundle install
 * rails db:create
 * rails db:migrate
 * rails db:seed
